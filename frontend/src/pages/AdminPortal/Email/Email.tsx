@@ -2,6 +2,8 @@ import "./Email.css";
 import { getMessages, setFavoriteMessages } from "../../../api/message";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Navbar from "../../Navbar/Navbar";
+import Login from "../Login/Login";
 
 interface FormFields {
   id: number;

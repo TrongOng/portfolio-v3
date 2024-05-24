@@ -29,6 +29,28 @@ const RootPage = () => (
     <Footer />
   </>
 );
+const LoginPage = () => (
+  <>
+    <Navbar />
+    <Login />
+    <Footer />
+  </>
+);
+const EmailPage = () => (
+  <>
+    <Navbar />
+    <Email />
+    <Footer />
+  </>
+);
+const MessagePage = () => (
+  <>
+    <Navbar />
+    <Message />
+    <Footer />
+  </>
+);
+
 const router = createBrowserRouter([
   {
     path: "/",
