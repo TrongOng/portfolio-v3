@@ -1,0 +1,113 @@
+/* Navbar */
+.navbar-section {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 29px 80px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  backdrop-filter: blur(50px);
+}
+.navbar-container {
+  display: flex;
+  padding: 1rem 10rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-items ul {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+  text-decoration: none;
+}
+
+.navbar-content {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+  position: relative;
+  cursor: pointer;
+}
+
+.navbar-content:before {
+  content: " ";
+  width: 2rem;
+  height: 0.2rem;
+  background: linear-gradient(90deg, #a993fe 0%, #7e61e7 100%);
+  border-radius: 0.5rem;
+  position: absolute;
+  bottom: -0.6rem;
+  opacity: 0;
+  transform: translateX(-1.5rem);
+  transition: all 0.3s ease;
+}
+
+.navbar-content:hover::before {
+  width: 100%;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Navbar Button */
+.nav-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 0.4rem;
+  color: #fff;
+  background: linear-gradient(90deg, #a993fe -0.13%, #7e61e7 99.87%);
+  line-height: 0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: none;
+}
+.nav-btn:hover {
+  color: #a993fe;
+  background: #000;
+  border: 1px solid #a993fe;
+}
+
+/* Media Query for Responsive */
+@media screen and (max-width: 769px) {
+  .navbar-container {
+    padding: 1rem 4rem;
+  }
+  .nav-btn,
+  .navbar-items {
+    display: flex;
+    z-index: 30;
+  }
+  .navbar-items {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -20rem;
+    left: 0;
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+  .navbar-items ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .navbar-items.active {
+    top: 4.65rem;
+  }
+  @media screen and (max-width: 426px) {
+    .navbar-container {
+      padding: 1rem 1.5rem;
+    }
+    .nav-btn {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}

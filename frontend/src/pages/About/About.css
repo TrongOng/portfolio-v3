@@ -1,0 +1,56 @@
+/* ABOUT SECTION */
+.about-section {
+  height: 100%;
+  margin: 0 10%;
+}
+.about-title {
+  font-size: 3rem;
+  text-align: center;
+  color: #a993fe;
+  margin-bottom: 2rem;
+}
+.about-details-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.experience-icon {
+  color: #6751b9;
+}
+.text-container p {
+  margin-bottom: 1rem;
+}
+@media screen and (max-width: 1025px) {
+  .about-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+}
+@media screen and (max-width: 769px) {
+  p {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .about-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .about-details-container {
+    justify-content: center;
+    flex-direction: row;
+  }
+  .about-details-container {
+    display: block;
+  }
+  p {
+    font-size: 0.75rem;
+  }
+}
+@media screen and (max-width: 376px) {
+  p {
+    font-size: 0.75rem;
+  }
+}

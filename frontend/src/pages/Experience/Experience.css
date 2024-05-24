@@ -1,0 +1,87 @@
+.experience-section {
+  height: 100%;
+  margin: 0 10%;
+  position: relative;
+}
+.experience-title {
+  font-size: 3rem;
+  text-align: center;
+  color: #a993fe;
+  margin-bottom: 2rem;
+}
+.experience-content {
+  margin: 2rem 2rem;
+}
+.experience-subtitle {
+  font-size: 2rem;
+}
+.experience-container h5 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.slick-arrow.slick-prev,
+.slick-arrow.slick-next {
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6751b9;
+  border-radius: 0.65rem;
+  border: 1.5px solid #6751b9;
+  background: #130f2a;
+  z-index: 3;
+  cursor: pointer;
+}
+.slick-arrow.slick-prev:hover,
+.slick-arrow.slick-next:hover {
+  background: #130f2a;
+  color: #6751b9;
+}
+
+.slick-arrow.slick-next:before {
+  content: "";
+}
+
+.slick-arrow.slick-prev:before {
+  content: "";
+}
+@media (max-width: 1025px) {
+  .experience-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .experience-subtitle {
+    font-size: 1.75rem;
+  }
+}
+@media (max-width: 768px) {
+  .experience-title {
+    font-size: 2.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .experience-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .experience-title {
+    font-size: 2rem;
+    margin-bottom: 0rem;
+  }
+  .experience-subtitle {
+    font-size: 1.25rem;
+  }
+}
+@media screen and (max-width: 376px) {
+  .experience-title {
+    font-size: 1.75rem;
+  }
+}
+@media screen and (max-width: 321px) {
+  .experience-title {
+    font-size: 1.5rem;
+  }
+}
