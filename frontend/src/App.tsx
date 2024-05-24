@@ -16,8 +16,8 @@ import Message from "./pages/AdminPortal/Email/Message/Message.tsx";
 
 // Auth + Routers
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import { AuthProvider } from "./context/AuthProvider.tsx";
-// import ProtectedRoute from "./context/ProtectedRoute.tsx";
+import { AuthProvider } from "./context/AuthProvider.tsx";
+import ProtectedRoute from "./context/ProtectedRoute.tsx";
 
 const RootPage = () => (
   <>
@@ -35,6 +35,23 @@ const router = createBrowserRouter([
     element: <RootPage />,
   },
   {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "/email",
+        element: <Email />,
+      },
+      {
+        path: "/message/:id",
+        element: <Message />,
+      },
+    ],
+  },
+  {
     path: "*",
     element: <NotFound />,
   },
@@ -43,7 +60,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>
+      <AuthProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </AuthProvider>
     </>
   );
 }

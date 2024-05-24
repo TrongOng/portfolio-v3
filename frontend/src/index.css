@@ -17,12 +17,6 @@ body {
   min-height: fit-content;
   overflow-x: hidden;
 }
-/* .line {
-  border: 2px solid #6751b9;
-  border-radius: 5px;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-} */
 
 /* Define scrollbar styles */
 ::-webkit-scrollbar {
