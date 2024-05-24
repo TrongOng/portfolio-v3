@@ -46,5 +46,4 @@ class Settings(BaseSettings):
             return v
         raise ValueError(v)
 
-
 settings = Settings()
