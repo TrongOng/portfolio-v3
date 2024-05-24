@@ -25,7 +25,7 @@ const RootPage = () => (
     <Home />
     <About />
     <Experience />
-    {/* <Contact /> */}
+    <Contact />
     <Footer />
   </>
 );

@@ -1,0 +1,68 @@
+import axios from "axios";
+import { API_URL } from "../config/baseurl";
+const API = `${API_URL}/message`;
+
+export interface MessageModel {
+  id: number;
+  title: string;
+  name: string;
+  email: string;
+  message: string;
+  is_open: boolean;
+  is_favorite: boolean;
+}
+
+// Function to send a new message to the database, excluding the "id", "is_open", "is_favorite"
+export const createMessage = async (
+  data: Omit<MessageModel, "id" | "is_open" | "is_favorite">
+): Promise<MessageModel> => {
+  try {
+    const result = await axios.post<MessageModel>(API, data);
+    return result.data;
+  } catch (error) {
+    console.error("Error creating message", error);
+    throw error;
+  }
+};
+
+// Function to get messages with pagination
+export const getMessages = async (
+  skip: number = 0,
+  limit: number = 50
+): Promise<MessageModel[]> => {
+  try {
+    const result = await axios.get<MessageModel[]>(API, {
+      params: { skip, limit },
+    });
+    return result.data;
+  } catch (error) {
+    console.error("Error fetching messages", error);
+    throw error;
+  }
+};
+// Function to get single message
+export const getMessage = async (id: number): Promise<MessageModel> => {
+  try {
+    const result = await axios.get<MessageModel>(`${API}/${id}`, {});
+    return result.data;
+  } catch (error) {
+    console.error("Error fetching message", error);
+    throw error;
+  }
+};
+
+// Function to set is_favorite
+export const setFavoriteMessages = async (
+  id: number,
+  is_favorite: boolean
+): Promise<MessageModel> => {
+  try {
+    const result = await axios.put<MessageModel>(`${API}/is_favorite/${id}`, {
+      is_favorite,
+    });
+    return result.data;
+  } catch (error) {
+    console.error("Error updating message to is_favorite", error);
+    throw error;
+  }
+};
