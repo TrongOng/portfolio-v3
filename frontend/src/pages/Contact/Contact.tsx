@@ -2,7 +2,7 @@ import "./Contact.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createMessage } from "../../api/message";
 import { useAsync } from "@react-hookz/web";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface FormFields {
   title: string;

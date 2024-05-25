@@ -15,46 +15,76 @@ import Email from "./pages/AdminPortal/Email/Email.tsx";
 import Message from "./pages/AdminPortal/Email/Message/Message.tsx";
 
 // Auth + Routers
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider.tsx";
 import ProtectedRoute from "./context/ProtectedRoute.tsx";
 
 const RootPage = () => (
   <>
-    <Navbar />
     <Home />
     <About />
     <Experience />
     <Contact />
-    <Footer />
   </>
 );
-
+function NavFooterWrapper() {
+  return (
+    <div>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </div>
+  );
+}
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootPage />,
+    element: <NavFooterWrapper />,
+    children: [
+      {
+        path: "/",
+        element: <RootPage />,
+      },
+    ],
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <NavFooterWrapper />,
+    children: [
+      {
+        path: "/login",
+        element: <Login />,
+      },
+    ],
   },
   {
     element: <ProtectedRoute />,
     children: [
       {
-        path: "/email",
-        element: <Email />,
-      },
-      {
-        path: "/message/:id",
-        element: <Message />,
+        path: "/",
+        element: <NavFooterWrapper />, // Display Navbar and Footer for protected routes
+        children: [
+          {
+            path: "/email",
+            element: <Email />,
+          },
+          {
+            path: "/message/:id",
+            element: <Message />,
+          },
+        ],
       },
     ],
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: <NavFooterWrapper />,
+    children: [
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+    ],
   },
 ]);
 
