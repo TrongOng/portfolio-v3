@@ -1,4 +1,5 @@
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -15,11 +16,7 @@ function Footer() {
           <div className="footer-social-icon">
             <ul>
               <li>
-                <a
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Link to="https://www.instagram.com/">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="instagram-icon"
@@ -35,14 +32,10 @@ function Footer() {
                       fill="#fff"
                     />
                   </svg>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="https://www.twitter.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Link to="https://www.twitter.com/">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="twitter-icon"
@@ -56,14 +49,10 @@ function Footer() {
                       fill="#fff"
                     />
                   </svg>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="https://www.linkedin.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Link to="https://www.linkedin.com/">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="linkedin-icon"
@@ -79,14 +68,10 @@ function Footer() {
                       fill="#fff"
                     />
                   </svg>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="https://www.github.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Link to="https://www.github.com/">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="github-icon"
@@ -101,7 +86,7 @@ function Footer() {
                       fill="#fff"
                     />
                   </svg>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -110,7 +95,6 @@ function Footer() {
               <li>
                 <a
                   className="footer-item"
-                  href="#home"
                   onClick={() => handleMenuItemClick("home")}
                 >
                   Home
@@ -119,7 +103,6 @@ function Footer() {
               <li>
                 <a
                   className="footer-item"
-                  href="#about"
                   onClick={() => handleMenuItemClick("about")}
                 >
                   About
@@ -128,7 +111,6 @@ function Footer() {
               <li>
                 <a
                   className="footer-item"
-                  href="#experience"
                   onClick={() => handleMenuItemClick("experience")}
                 >
                   Experience
@@ -137,16 +119,15 @@ function Footer() {
               <li>
                 <a
                   className="footer-item"
-                  href="#contact"
                   onClick={() => handleMenuItemClick("contact")}
                 >
                   Contact Me
                 </a>
               </li>
               <li>
-                <a className="footer-item" href="/login">
+                <Link to="/login" className="footer-item">
                   Admin Portal
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

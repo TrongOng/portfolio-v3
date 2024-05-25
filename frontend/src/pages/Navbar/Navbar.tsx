@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
@@ -80,6 +81,11 @@ function Navbar() {
                 >
                   Contact Me
                 </a>
+              </li>
+              <li>
+                <Link to="/login" className="navbar-content">
+                  Admin Portal
+                </Link>
               </li>
             </ul>
           </div>
