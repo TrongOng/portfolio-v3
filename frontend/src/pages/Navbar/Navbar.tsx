@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
   const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
@@ -13,19 +14,17 @@ function Navbar() {
   const handleMenuItemClick = (id: string) => {
     const targetSection = document.getElementById(id);
     const navbar = document.querySelector(".navbar-section") as HTMLElement;
-    const currentPath = window.location.pathname;
+    const currentPath = location.pathname;
 
-    if (targetSection && navbar) {
-      const navbarHeight = navbar.offsetHeight;
-      const offsetTop = targetSection.offsetTop - navbarHeight;
-
-      if (currentPath === "/") {
+    if (currentPath === "/") {
+      if (targetSection && navbar) {
+        const navbarHeight = navbar.offsetHeight;
+        const offsetTop = targetSection.offsetTop - navbarHeight;
         window.scrollTo({ top: offsetTop, behavior: "smooth" });
         setOpenMenu(false); // Close the menu if it's open
-      } else {
-        console.log("Triggered");
-        navigate("/");
       }
+    } else {
+      navigate("/");
     }
   };
 

@@ -42,7 +42,7 @@ const router = createBrowserRouter([
     element: <NavFooterWrapper />,
     children: [
       {
-        path: "/",
+        path: "",
         element: <RootPage />,
       },
     ],
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
     element: <NavFooterWrapper />,
     children: [
       {
-        path: "/login",
+        path: "",
         element: <Login />,
       },
     ],
@@ -61,15 +61,15 @@ const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       {
-        path: "/",
+        path: "/email",
         element: <NavFooterWrapper />, // Display Navbar and Footer for protected routes
         children: [
           {
-            path: "/email",
+            path: "",
             element: <Email />,
           },
           {
-            path: "/message/:id",
+            path: "message/:id",
             element: <Message />,
           },
         ],
