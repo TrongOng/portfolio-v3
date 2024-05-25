@@ -16,7 +16,11 @@ function Footer() {
           <div className="footer-social-icon">
             <ul>
               <li>
-                <Link to="https://www.instagram.com/">
+                <a
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="instagram-icon"
@@ -32,10 +36,14 @@ function Footer() {
                       fill="#fff"
                     />
                   </svg>
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="https://www.twitter.com/">
+                <a
+                  href="https://www.twitter.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="twitter-icon"
@@ -49,10 +57,14 @@ function Footer() {
                       fill="#fff"
                     />
                   </svg>
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="https://www.linkedin.com/">
+                <a
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="linkedin-icon"
@@ -68,10 +80,14 @@ function Footer() {
                       fill="#fff"
                     />
                   </svg>
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="https://www.github.com/">
+                <a
+                  href="https://www.github.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="github-icon"
@@ -86,7 +102,7 @@ function Footer() {
                       fill="#fff"
                     />
                   </svg>
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -95,6 +111,7 @@ function Footer() {
               <li>
                 <a
                   className="footer-item"
+                  href="#home"
                   onClick={() => handleMenuItemClick("home")}
                 >
                   Home

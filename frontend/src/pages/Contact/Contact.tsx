@@ -52,7 +52,7 @@ function Contact() {
             <input
               type="text"
               {...register("name", { required: "Name is required" })}
-              placeholder="User's Name"
+              placeholder="Full Name"
             />
             {errors.name && (
               <div className="error-message">{errors.name.message}</div>
