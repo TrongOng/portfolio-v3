@@ -12,6 +12,7 @@ interface FormFields {
   message: string;
   is_open: boolean;
   is_favorite: boolean;
+  created_at: string;
 }
 
 function Message() {
@@ -21,11 +22,14 @@ function Message() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("ID:", id);
     const fetchMessage = async () => {
       try {
         const messageData = await getMessage(Number(id));
+        console.log("Message Data:", messageData);
         setMessage(messageData);
       } catch (err) {
+        console.error("Error fetching message:", err);
         setError("Failed to load message details");
       }
     };

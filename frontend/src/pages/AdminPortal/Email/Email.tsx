@@ -1,5 +1,9 @@
 import "./Email.css";
-import { getMessages, setFavoriteMessages } from "../../../api/message";
+import {
+  getMessages,
+  getMessage,
+  setFavoriteMessages,
+} from "../../../api/message";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -50,8 +54,6 @@ function Email() {
           (currentPage - 1) * emailsPerPage,
           emailsPerPage
         );
-        console.log("Fetched messages:", userMessages); // Log fetched messages
-        console.log("Total count:", totalCount); // Log total count
         setMessages(userMessages);
         setTotalEmails(totalCount);
       } catch (err) {
@@ -86,7 +88,7 @@ function Email() {
   const handleMessageClick = async (id: number) => {
     const message = messages.find((email) => email.id === id);
     if (!message) return;
-    navigate(`/message/${id}`);
+    navigate(`/email/message/${id}`);
   };
 
   return (
@@ -141,6 +143,7 @@ function Email() {
           ) : messages ? (
             messages.map((email) => (
               <div
+                key={email.id}
                 className="email-list"
                 onClick={() => handleMessageClick(email.id)}
               >

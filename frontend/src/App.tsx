@@ -62,7 +62,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/email",
-        element: <NavFooterWrapper />, // Display Navbar and Footer for protected routes
+        element: <NavFooterWrapper />,
         children: [
           {
             path: "",
