@@ -10,11 +10,12 @@ export interface MessageModel {
   message: string;
   is_open: boolean;
   is_favorite: boolean;
+  created_at: string;
 }
 
 // Function to send a new message to the database, excluding the "id", "is_open", "is_favorite"
 export const createMessage = async (
-  data: Omit<MessageModel, "id" | "is_open" | "is_favorite">
+  data: Omit<MessageModel, "id" | "is_open" | "is_favorite" | "created_at">
 ): Promise<MessageModel> => {
   try {
     const result = await axios.post<MessageModel>(API, data);
@@ -29,22 +30,23 @@ export const createMessage = async (
 export const getMessages = async (
   skip: number = 0,
   limit: number = 50
-): Promise<MessageModel[]> => {
+): Promise<[MessageModel[], number]> => {
   try {
-    const result = await axios.get<MessageModel[]>(API, {
+    const response = await axios.get<[MessageModel[], number]>(API, {
       params: { skip, limit },
     });
-    return result.data;
+    return response.data;
   } catch (error) {
     console.error("Error fetching messages", error);
     throw error;
   }
 };
+
 // Function to get single message
 export const getMessage = async (id: number): Promise<MessageModel> => {
   try {
-    const result = await axios.get<MessageModel>(`${API}/${id}`, {});
-    return result.data;
+    const response = await axios.get<MessageModel>(`${API}/${id}`, {});
+    return response.data;
   } catch (error) {
     console.error("Error fetching message", error);
     throw error;
@@ -57,10 +59,10 @@ export const setFavoriteMessages = async (
   is_favorite: boolean
 ): Promise<MessageModel> => {
   try {
-    const result = await axios.put<MessageModel>(`${API}/is_favorite/${id}`, {
+    const response = await axios.put<MessageModel>(`${API}/is_favorite/${id}`, {
       is_favorite,
     });
-    return result.data;
+    return response.data;
   } catch (error) {
     console.error("Error updating message to is_favorite", error);
     throw error;

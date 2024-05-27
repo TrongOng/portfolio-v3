@@ -41,6 +41,30 @@
   border: 1.5px solid #6751b9;
   height: 700px;
 }
+.email-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkbox-selector {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.email-tools > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.arrow-selector {
+  cursor: pointer;
+}
+.email-list-body {
+  height: 100%;
+  overflow-y: auto;
+}
+
 .email-list {
   display: flex;
   align-items: center;
