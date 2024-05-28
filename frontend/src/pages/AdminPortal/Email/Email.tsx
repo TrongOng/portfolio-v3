@@ -1,11 +1,8 @@
 import "./Email.css";
-import {
-  getMessages,
-  getMessage,
-  setFavoriteMessages,
-} from "../../../api/message";
+import { getMessages, setFavoriteMessages } from "../../../api/message";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { format } from "date-fns";
 
 interface FormFields {
   id: number;
@@ -15,6 +12,7 @@ interface FormFields {
   message: string;
   is_open: boolean;
   is_favorite: boolean;
+  created_at: string;
 }
 
 function Email() {
@@ -154,6 +152,7 @@ function Email() {
                     type="checkbox"
                     checked={email.is_favorite}
                     onChange={() => handleFavoriteToggle(email.id)}
+                    onClick={(event) => event.stopPropagation()}
                   />
                 </label>
                 <div className="email-list-title">
@@ -161,6 +160,9 @@ function Email() {
                 </div>
                 <div className="email-list-description">
                   <p>{email.message}</p>
+                </div>
+                <div>
+                  <p>{format(new Date(email.created_at), "MM-dd-yyyy")}</p>
                 </div>
               </div>
             ))
