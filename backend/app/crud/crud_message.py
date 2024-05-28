@@ -1,8 +1,7 @@
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional, Union, List
 
 from sqlalchemy.orm import Session
 
-from app.core.security import get_password_hash, verify_password
 from app.crud.base import CRUDBase
 from app.models.message import Message
 from app.schemas.message import MessageCreate, MessageUpdate
@@ -13,6 +12,16 @@ from app import crud
 
 
 class CRUDUser(CRUDBase[Message, MessageCreate, MessageUpdate]):
-    pass
+    def get_multi_messages(
+            self, db:Session, *, skip: int = 0, limit: int = 50
+    ) -> List[Message]:
+        return db.query(self.model).offset(skip).limit(limit).all()
+        
+    def get_multi_sorted(
+        self, db: Session, *, skip: int = 0, limit: int = 50
+    ) -> List[Message]:
+        return db.query(self.model).order_by(self.model.created_at.desc()).offset(skip).limit(limit).all()
+
+        
 
 message = CRUDUser(Message)

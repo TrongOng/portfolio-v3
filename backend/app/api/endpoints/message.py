@@ -1,4 +1,5 @@
 from typing import Any, List, Tuple
+from math import ceil
 from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 from app import crud, models, schemas
@@ -22,18 +23,33 @@ def create_message(
     message = crud.message.create(db, obj_in=message_in)
     return message
 
-# get all messages
+# get all messages descending order (lastest to last)
 @router.get("", response_model=Tuple[List[schemas.Message], int])
-def get_messages(
+def get_desc_messages(
     db: Session = Depends(deps.get_db),
-    skip: int = 0,
-    limit: int = 50,
+    page: int = 1,  # default to the first page
+    items_per_page: int = 50,  # default number of items per page
 ) -> Tuple[List[models.Message], int]:
     """
-    Retrieve all messages.
+    Retrieve paginated messages in descending order.
     """
-    messages = crud.message.get_multi(db, skip=skip, limit=limit)
-    total_count = db.query(models.Message).count() # Total count of emails
+    # Calculate skip value based on page number and items per page
+    skip = (page - 1) * items_per_page
+    
+    # Fetch messages for the current page
+    messages = crud.message.get_multi_sorted(db, skip=skip, limit=items_per_page)
+    
+    # Calculate total count of messages
+    total_count = db.query(models.Message).count()
+
+    # Calculate total number of pages
+    total_pages = ceil(total_count / items_per_page)
+
+    # Check if current page is greater than total pages
+    if page > total_pages:
+        # Return an empty list of messages and total count as 0
+        return [], 0
+    
     return messages, total_count
 
 # get message

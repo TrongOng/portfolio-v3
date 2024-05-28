@@ -26,16 +26,20 @@ export const createMessage = async (
   }
 };
 
-// Function to get messages with pagination
+// get messages by descending + pagination
 export const getMessages = async (
-  skip: number = 0,
-  limit: number = 50
+  page: number,
+  items_per_page: number
 ): Promise<[MessageModel[], number]> => {
   try {
     const response = await axios.get<[MessageModel[], number]>(API, {
-      params: { skip, limit },
+      params: {
+        page: page,
+        items_per_page: items_per_page,
+      },
     });
-    return response.data;
+    // Accessing data directly without the 'data' wrapper
+    return response.data; // Extracting data from the response
   } catch (error) {
     console.error("Error fetching messages", error);
     throw error;

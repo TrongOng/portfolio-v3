@@ -21,43 +21,34 @@ function Email() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
+  // useState for Select All
   const [isChecked, setIsChecked] = useState(false);
+  // useState for Select Individual
+  const [isIndividualChecked, setIsIndividualChecked] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalEmails, setTotalEmails] = useState(0);
-
-  const emailsPerPage = 50;
+  // Messages
+  const [totalMessages, setTotalMessages] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 50;
 
   const toggleCheckbox = () => {
     setIsChecked(!isChecked);
   };
-
-  const handleNextPage = () => {
-    if (currentPage * emailsPerPage < totalEmails) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
+  const toggleIndividualCheckbox = async (id: number) => {
+    setIsIndividualChecked(!isIndividualChecked);
   };
 
   useEffect(() => {
     const fetchMessages = async () => {
-      setIsLoading(true);
       try {
-        const [userMessages, totalCount] = await getMessages(
-          (currentPage - 1) * emailsPerPage,
-          emailsPerPage
+        const [fetchedMessages, total] = await getMessages(
+          currentPage,
+          itemsPerPage
         );
-        setMessages(userMessages);
-        setTotalEmails(totalCount);
-      } catch (err) {
-        setError("Failed to load messages");
-      } finally {
-        setIsLoading(false);
+        setMessages(fetchedMessages);
+        setTotalMessages(total);
+      } catch (error) {
+        console.error("Error fetching messages", error);
       }
     };
 
@@ -70,6 +61,7 @@ function Email() {
 
     const updatedFavoriteStatus = !message.is_favorite;
     try {
+      // Update the Favorite Call
       await setFavoriteMessages(id, updatedFavoriteStatus);
       setMessages((prevMessages) =>
         prevMessages.map((email) =>
@@ -112,21 +104,25 @@ function Email() {
           </div>
           <div>
             <div>
-              {`${(currentPage - 1) * emailsPerPage + 1}-${Math.min(
-                currentPage * emailsPerPage,
-                totalEmails
-              )} of ${totalEmails}`}
+              {`${currentPage}-${Math.min(
+                currentPage * itemsPerPage,
+                totalMessages
+              )} of ${totalMessages}`}
             </div>
             <div className="arrow-selector">
               <span
                 className="material-symbols-outlined"
-                onClick={handlePreviousPage}
+                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               >
                 arrow_back_ios
               </span>
               <span
                 className="material-symbols-outlined"
-                onClick={handleNextPage}
+                onClick={() =>
+                  setCurrentPage((prev) =>
+                    Math.min(prev + 1, Math.ceil(totalMessages / itemsPerPage))
+                  )
+                }
               >
                 arrow_forward_ios
               </span>
@@ -146,14 +142,40 @@ function Email() {
                 onClick={() => handleMessageClick(email.id)}
               >
                 <label className="email-icon">
-                  <input className="box-checkbox" type="checkbox" />
-                  <input
+                  <div
+                    className="box-checkbox"
+                    onClick={(event) => {
+                      event.stopPropagation(); // Stop event propagation
+                      toggleIndividualCheckbox(email.id); // Invoke toggleIndividualCheckbox
+                    }}
+                  >
+                    <span
+                      className={`material-symbols-outlined ${
+                        isIndividualChecked ? "checked" : ""
+                      }`}
+                    >
+                      {isIndividualChecked
+                        ? "check_box"
+                        : "check_box_outline_blank"}
+                    </span>
+                  </div>
+                  <div
                     className="star-checkbox"
-                    type="checkbox"
-                    checked={email.is_favorite}
-                    onChange={() => handleFavoriteToggle(email.id)}
-                    onClick={(event) => event.stopPropagation()}
-                  />
+                    onChange={() => {}}
+                    onClick={(event) => {
+                      event.stopPropagation(); // Stop event propagation
+                      handleFavoriteToggle(email.id); // Invoke handleFavoriteToggle
+                    }}
+                  >
+                    {" "}
+                    <span
+                      className={`material-symbols-outlined checkbox-icon ${
+                        email.is_favorite ? "checked" : ""
+                      }`}
+                    >
+                      {email.is_favorite ? "star_rate_half" : "star"}
+                    </span>
+                  </div>
                 </label>
                 <div className="email-list-title">
                   <p>{email.title}</p>
