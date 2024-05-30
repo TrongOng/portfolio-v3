@@ -16,28 +16,39 @@ interface FormFields {
 }
 
 function Email() {
+  // State to hold the list of email messages
   const [messages, setMessages] = useState<FormFields[]>([]);
+  // State to hold any error + loading messages
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
-  // useState for Select All
+  // State to manage the select-all checkbox
   const [isChecked, setIsChecked] = useState(false);
-  // useState for Select Individual
-  const [isIndividualChecked, setIsIndividualChecked] = useState(false);
+  // State to manage individual checkboxes
+  const [individualCheckedState, setIndividualCheckedState] = useState<{
+    [key: number]: boolean;
+  }>({});
 
-  // Messages
+  // message pagination states
   const [totalMessages, setTotalMessages] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 50;
 
+  // Function to toggle the select-all checkbox
   const toggleCheckbox = () => {
-    setIsChecked(!isChecked);
-  };
-  const toggleIndividualCheckbox = async (id: number) => {
-    setIsIndividualChecked(!isIndividualChecked);
+    const newCheckedState = !isChecked;
+    setIsChecked(newCheckedState);
+    // Update the state for all individual checkboxes
+    const newIndividualCheckedState = messages.reduce((acc, message) => {
+      acc[message.id] = newCheckedState;
+      return acc;
+    }, {} as { [key: number]: boolean });
+    setIndividualCheckedState(newIndividualCheckedState);
   };
 
+  // Effect to fetch email messages when the current page changes
   useEffect(() => {
     const fetchMessages = async () => {
       try {
@@ -47,22 +58,42 @@ function Email() {
         );
         setMessages(fetchedMessages);
         setTotalMessages(total);
+        // Reset individual checked state when messages change
+        const newIndividualCheckedState = fetchedMessages.reduce(
+          (acc, message) => {
+            acc[message.id] = false;
+            return acc;
+          },
+          {} as { [key: number]: boolean }
+        );
+        setIndividualCheckedState(newIndividualCheckedState);
       } catch (error) {
         console.error("Error fetching messages", error);
+        setError("Error fetching messages");
       }
     };
 
     fetchMessages();
   }, [currentPage]);
 
+  // Function to toggle an individual checkbox
+  const toggleIndividualCheckbox = (id: number) => {
+    setIndividualCheckedState((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+  };
+
+  // Function to handle the favorite status toggle for an email
   const handleFavoriteToggle = async (id: number) => {
     const message = messages.find((email) => email.id === id);
     if (!message) return;
 
     const updatedFavoriteStatus = !message.is_favorite;
     try {
-      // Update the Favorite Call
+      // Update the favorite status in the backend
       await setFavoriteMessages(id, updatedFavoriteStatus);
+      // Update the favorite status in the local state
       setMessages((prevMessages) =>
         prevMessages.map((email) =>
           email.id === id
@@ -75,9 +106,8 @@ function Email() {
     }
   };
 
-  const handleMessageClick = async (id: number) => {
-    const message = messages.find((email) => email.id === id);
-    if (!message) return;
+  // Function to navigate to the email details page when an email is clicked
+  const handleMessageClick = (id: number) => {
     navigate(`/email/message/${id}`);
   };
 
@@ -101,6 +131,9 @@ function Email() {
             >
               {isChecked ? "check_box" : "check_box_outline_blank"}
             </span>
+          </div>
+          <div>
+            <span className="material-symbols-outlined">delete</span>
           </div>
           <div>
             <div>
@@ -144,17 +177,18 @@ function Email() {
                 <label className="email-icon">
                   <div
                     className="box-checkbox"
+                    onChange={() => {}}
                     onClick={(event) => {
-                      event.stopPropagation(); // Stop event propagation
-                      toggleIndividualCheckbox(email.id); // Invoke toggleIndividualCheckbox
+                      event.stopPropagation();
+                      toggleIndividualCheckbox(email.id);
                     }}
                   >
                     <span
                       className={`material-symbols-outlined ${
-                        isIndividualChecked ? "checked" : ""
+                        individualCheckedState[email.id] ? "checked" : ""
                       }`}
                     >
-                      {isIndividualChecked
+                      {individualCheckedState[email.id]
                         ? "check_box"
                         : "check_box_outline_blank"}
                     </span>
