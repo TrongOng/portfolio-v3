@@ -123,7 +123,7 @@ function Email() {
       </form>
       <div className="email-list-container">
         <div className="email-tools">
-          <div className="checkbox-selector" onClick={toggleCheckbox}>
+          <div onClick={toggleCheckbox}>
             <span
               className={`material-symbols-outlined checkbox-icon ${
                 isChecked ? "checked" : ""
@@ -131,18 +131,16 @@ function Email() {
             >
               {isChecked ? "check_box" : "check_box_outline_blank"}
             </span>
-          </div>
-          <div>
             <span className="material-symbols-outlined">delete</span>
           </div>
           <div>
-            <div>
+            <p>
               {`${currentPage}-${Math.min(
                 currentPage * itemsPerPage,
                 totalMessages
               )} of ${totalMessages}`}
-            </div>
-            <div className="arrow-selector">
+            </p>
+            <div>
               <span
                 className="material-symbols-outlined"
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
@@ -171,10 +169,10 @@ function Email() {
             messages.map((email) => (
               <div
                 key={email.id}
-                className="email-list"
+                className="email-item"
                 onClick={() => handleMessageClick(email.id)}
               >
-                <label className="email-icon">
+                <div className="email-icon">
                   <div
                     className="box-checkbox"
                     onChange={() => {}}
@@ -210,14 +208,10 @@ function Email() {
                       {email.is_favorite ? "star_rate_half" : "star"}
                     </span>
                   </div>
-                </label>
-                <div className="email-list-title">
+                </div>
+                <div className="email-content">
                   <p>{email.title}</p>
-                </div>
-                <div className="email-list-description">
                   <p>{email.message}</p>
-                </div>
-                <div>
                   <p>{format(new Date(email.created_at), "MM-dd-yyyy")}</p>
                 </div>
               </div>

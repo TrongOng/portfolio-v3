@@ -44,72 +44,62 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
-.checkbox-selector {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
+.email-tools > div:first-child,
 .email-tools > div:last-child {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-.arrow-selector {
+
+.email-tools span {
   cursor: pointer;
 }
+
+/* Email Section List Body */
 .email-list-body {
   height: 700px;
   overflow-y: auto;
 }
 
-.email-list {
+.email-list-body div {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  padding: 10px;
-  border-radius: 5px;
-  overflow: hidden;
-  margin: 0 2%;
-  font-size: 1rem;
+  gap: 1rem;
 }
-.email-list:hover {
+
+.email-item:hover {
   box-shadow: 0 0 2px #a892fe;
   color: #a892fe;
   background: transparent;
 }
 
-/* Email List Content */
-.email-list-title {
-  width: 30%; /* Adjust the value as needed */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.email-list-description {
-  width: 55%; /* Adjust the value as needed */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Icon Email */
 .email-icon {
-  width: 5%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.box-checkbox {
-  display: flex;
-  align-items: center;
   cursor: pointer;
 }
 
-.star-checkbox {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+.email-content {
+  flex-grow: 1;
+  margin-left: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.email-content p:nth-child(1) {
+  width: 20%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.email-content p:nth-child(2) {
+  width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.email-content p:nth-child(3) {
+  width: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
