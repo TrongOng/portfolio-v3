@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
 
@@ -33,6 +33,9 @@ class MessageUpdateAdmin(BaseModel):
     message: Optional[str] = None
     is_open: Optional[bool] = None
     is_favorite: Optional[bool] = None
+
+class DeleteMessagesRequest(BaseModel):
+    message_ids: List[int]
 
 
 class MessageInDBBase(MessageBase):

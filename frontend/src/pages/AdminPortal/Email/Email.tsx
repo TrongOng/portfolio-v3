@@ -1,5 +1,10 @@
 import "./Email.css";
-import { getMessages, setFavoriteMessages } from "../../../api/message";
+import {
+  getMessages,
+  setFavoriteMessages,
+  setIsOpen,
+  deleteMessages,
+} from "../../../api/message";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
@@ -22,8 +27,6 @@ function Email() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const navigate = useNavigate();
-
   // State to manage the select-all checkbox
   const [isChecked, setIsChecked] = useState(false);
   // State to manage individual checkboxes
@@ -36,17 +39,7 @@ function Email() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 50;
 
-  // Function to toggle the select-all checkbox
-  const toggleCheckbox = () => {
-    const newCheckedState = !isChecked;
-    setIsChecked(newCheckedState);
-    // Update the state for all individual checkboxes
-    const newIndividualCheckedState = messages.reduce((acc, message) => {
-      acc[message.id] = newCheckedState;
-      return acc;
-    }, {} as { [key: number]: boolean });
-    setIndividualCheckedState(newIndividualCheckedState);
-  };
+  const navigate = useNavigate();
 
   // Effect to fetch email messages when the current page changes
   useEffect(() => {
@@ -76,6 +69,18 @@ function Email() {
     fetchMessages();
   }, [currentPage]);
 
+  // Function to toggle the select-all checkbox
+  const toggleCheckbox = () => {
+    const newCheckedState = !isChecked;
+    setIsChecked(newCheckedState);
+    // Update the state for all individual checkboxes
+    const newIndividualCheckedState = messages.reduce((acc, message) => {
+      acc[message.id] = newCheckedState;
+      return acc;
+    }, {} as { [key: number]: boolean });
+    setIndividualCheckedState(newIndividualCheckedState);
+  };
+
   // Function to toggle an individual checkbox
   const toggleIndividualCheckbox = (id: number) => {
     setIndividualCheckedState((prevState) => ({
@@ -84,15 +89,57 @@ function Email() {
     }));
   };
 
+  // Function to delete messages
+  const toggleDeleteMessages = async () => {
+    // Retrieve selected message IDs
+    const selectedIds = Object.entries(individualCheckedState)
+      .filter(([id, isChecked]) => isChecked)
+      .map(([id]) => parseInt(id));
+
+    // If no messages are selected, return
+    if (selectedIds.length === 0) {
+      console.log("No messages selected for deletion.");
+      return;
+    }
+
+    try {
+      // Delete the selected messages
+      const deletedMessages = await deleteMessages(selectedIds);
+      console.log("Messages deleted:", deletedMessages);
+
+      // Refetch messages after deletion
+      const [fetchedMessages, total] = await getMessages(
+        currentPage,
+        itemsPerPage
+      );
+      setMessages(fetchedMessages);
+      setTotalMessages(total);
+      // Reset individual checked state when messages change
+      const newIndividualCheckedState = fetchedMessages.reduce(
+        (acc, message) => {
+          acc[message.id] = false;
+          return acc;
+        },
+        {} as { [key: number]: boolean }
+      );
+      setIndividualCheckedState(newIndividualCheckedState);
+    } catch (error) {
+      console.error("Failed to delete messages:", error);
+    }
+  };
+
   // Function to handle the favorite status toggle for an email
   const handleFavoriteToggle = async (id: number) => {
-    const message = messages.find((email) => email.id === id);
-    if (!message) return;
-
-    const updatedFavoriteStatus = !message.is_favorite;
     try {
+      // Toggle the favorite status
+      const message = messages.find((email) => email.id === id);
+      if (!message) return;
+
+      const updatedFavoriteStatus = !message.is_favorite;
+
       // Update the favorite status in the backend
       await setFavoriteMessages(id, updatedFavoriteStatus);
+
       // Update the favorite status in the local state
       setMessages((prevMessages) =>
         prevMessages.map((email) =>
@@ -102,13 +149,32 @@ function Email() {
         )
       );
     } catch (error) {
-      console.error("Failed to update favorite status");
+      console.error("Failed to update favorite status:", error);
     }
   };
 
   // Function to navigate to the email details page when an email is clicked
-  const handleMessageClick = (id: number) => {
-    navigate(`/email/message/${id}`);
+  const handleMessageClick = async (id: number) => {
+    try {
+      // Toggle the is_open status
+      const updatedIsOpenStatus = !messages.find((email) => email.id === id)
+        ?.is_open;
+
+      // Update the is_open status in the backend
+      await setIsOpen(id, updatedIsOpenStatus);
+
+      // Update the is_open status in the local state
+      setMessages((prevMessages) =>
+        prevMessages.map((email) =>
+          email.id === id ? { ...email, is_open: updatedIsOpenStatus } : email
+        )
+      );
+
+      // Navigate to the email details page
+      navigate(`/email/message/${id}`);
+    } catch (error) {
+      console.error("Failed to navigate to email:", error);
+    }
   };
 
   return (
@@ -123,15 +189,21 @@ function Email() {
       </form>
       <div className="email-list-container">
         <div className="email-tools">
-          <div onClick={toggleCheckbox}>
+          <div>
             <span
+              onClick={toggleCheckbox}
               className={`material-symbols-outlined checkbox-icon ${
                 isChecked ? "checked" : ""
               }`}
             >
               {isChecked ? "check_box" : "check_box_outline_blank"}
             </span>
-            <span className="material-symbols-outlined">delete</span>
+            <span
+              onClick={toggleDeleteMessages}
+              className="material-symbols-outlined"
+            >
+              delete
+            </span>
           </div>
           <div>
             <p>

@@ -107,20 +107,17 @@ def update_isFavorite(
     
     return message_update
 
-# delete message by id (admin)
-@router.delete("/{message_id}", response_model=schemas.Message)
-def delete_user(
+# Delete messages by IDs
+@router.delete("", response_model=List[schemas.Message])
+def delete_multi_messages(
     *,
     db: Session = Depends(deps.get_db),
-    message_id: int,
-    current_user: models.User = Depends(deps.get_current_active_superuser),
-) -> Any:
-    message = crud.user.get(db, id=message_id)
-    if not message:
+    message_ids: schemas.DeleteMessagesRequest,
+) -> List[models.Message]:
+    deleted_messages = crud.message.delete_multi_messages(db=db, ids=message_ids.message_ids)
+    if not deleted_messages:
         raise HTTPException(
             status_code=404,
-            detail="Message not found",
+            detail="No messages found for deletion",
         )
-
-    crud.message.remove(db, id=message_id)
-    return message
+    return deleted_messages

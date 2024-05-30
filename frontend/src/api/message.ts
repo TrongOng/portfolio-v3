@@ -72,3 +72,34 @@ export const setFavoriteMessages = async (
     throw error;
   }
 };
+
+// Function to set is_open
+export const setIsOpen = async (
+  id: number,
+  is_open: boolean
+): Promise<MessageModel> => {
+  try {
+    const response = await axios.put<MessageModel>(`${API}/is_open/${id}`, {
+      is_open,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error updating message to is_open", error);
+    throw error;
+  }
+};
+
+// Function to delete selected emails
+export const deleteMessages = async (
+  ids: number[]
+): Promise<MessageModel[]> => {
+  try {
+    const response = await axios.delete<MessageModel[]>(API, {
+      data: { message_ids: ids },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting messages", error);
+    throw error;
+  }
+};
