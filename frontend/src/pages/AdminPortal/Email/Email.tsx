@@ -25,7 +25,9 @@ function Email() {
   // State to hold the list of email messages
   const [messages, setMessages] = useState<FormFields[]>([]);
   // State to hold search input
-  const [search, setSearch] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  // State to hold the submitted search query
+  const [searchQuery, setSearchQuery] = useState("");
   // State to hold any error
   const [error, setError] = useState<string | null>(null);
 
@@ -49,9 +51,9 @@ function Email() {
       try {
         let fetchedMessages;
         let total;
-        if (search) {
+        if (searchQuery) {
           [fetchedMessages, total] = await getSearchMessages(
-            search,
+            searchQuery,
             currentPage,
             itemsPerPage
           );
@@ -76,18 +78,12 @@ function Email() {
         setError("Error fetching messages");
       }
     };
-
     fetchMessages();
-  }, [currentPage, search, itemsPerPage]);
-
-  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-    setCurrentPage(1);
-  };
+  }, [currentPage, searchQuery, itemsPerPage]);
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSearch(search);
+    setSearchQuery(searchInput);
     setCurrentPage(1);
   };
 
@@ -209,8 +205,8 @@ function Email() {
           className="search-input"
           type="search"
           placeholder="Search Mail"
-          value={search}
-          onChange={handleSearchInput}
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.currentTarget.value)}
         ></input>
       </form>
       <div className="email-list-container">
