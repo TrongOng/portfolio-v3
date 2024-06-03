@@ -57,9 +57,7 @@ def get_desc_messages(
 def search_messages(
     *,
     db: Session = Depends(deps.get_db),
-    message_title: Optional[str] = None,
-    message_name: Optional[str] = None,
-    message_email: Optional[str] = None,
+    search: Optional[str] = None,
     page: int = 1,  # default to the first page
     items_per_page: int = 50,  # default number of items per page
 ) -> Tuple[List[schemas.Message], int]:
@@ -68,10 +66,10 @@ def search_messages(
     skip = (page - 1) * items_per_page
 
     # Fetch filtered and sorted messages with pagination
-    messages = crud.message.get_multi_sorted_search(db, skip=skip, limit=items_per_page, title=message_title, name=message_name, email=message_email)
+    messages = crud.message.get_multi_sorted_search(db, skip=skip, limit=items_per_page, search=search)
 
     # Calculate total count of messages that match the search criteria
-    total_count = crud.message.count_filtered_messages(db, title=message_title, name=message_name, email=message_email)
+    total_count = crud.message.count_filtered_messages(db, search=search)
 
     # Calculate total number of pages
     total_pages = ceil(total_count / items_per_page)
@@ -82,11 +80,6 @@ def search_messages(
         return [], 0
     
     return messages, total_count
-    
-    
-
-    
-    
     
 
 # get message
