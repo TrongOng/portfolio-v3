@@ -47,31 +47,29 @@ export const getMessages = async (
 };
 
 // get search messages by descending + pagination
-// export const getSearchMessages = async (
-//   title: Optional[string],
-//   name: string,
-//   email: string,
-//   page: number,
-//   items_per_page: number
-// ): Promise<[MessageModel[], number]> => {
-//   try {
-//     const response = await axios.get<[MessageModel[], number]>(
-//       `${API}/search`,
-//       {
-//         params: {
-
-//           page: page,
-//           items_per_page: items_per_page,
-//         },
-//       }
-//     );
-//     // Accessing data directly without the 'data' wrapper
-//     return response.data; // Extracting data from the response
-//   } catch (error) {
-//     console.error("Error fetching messages", error);
-//     throw error;
-//   }
-// };
+export const getSearchMessages = async (
+  search: string,
+  page: number,
+  items_per_page: number
+): Promise<[MessageModel[], number]> => {
+  try {
+    const response = await axios.get<[MessageModel[], number]>(
+      `${API}/search`,
+      {
+        params: {
+          search: search,
+          page: page,
+          items_per_page: items_per_page,
+        },
+      }
+    );
+    // Accessing data directly without the 'data' wrapper
+    return response.data; // Extracting data from the response
+  } catch (error) {
+    console.error("Error fetching messages", error);
+    throw error;
+  }
+};
 
 // Function to get single message
 export const getMessage = async (id: number): Promise<MessageModel> => {

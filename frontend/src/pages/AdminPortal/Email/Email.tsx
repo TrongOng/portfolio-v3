@@ -1,6 +1,7 @@
 import "./Email.css";
 import {
   getMessages,
+  getSearchMessages,
   setFavoriteMessages,
   setIsOpen,
   deleteMessages,
@@ -23,9 +24,10 @@ interface FormFields {
 function Email() {
   // State to hold the list of email messages
   const [messages, setMessages] = useState<FormFields[]>([]);
-  // State to hold any error + loading messages
+  // State to hold search input
+  const [search, setSearch] = useState("");
+  // State to hold any error
   const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // State to manage the select-all checkbox
   const [isChecked, setIsChecked] = useState(false);
@@ -41,17 +43,26 @@ function Email() {
 
   const navigate = useNavigate();
 
-  // Effect to fetch email messages when the current page changes
   useEffect(() => {
     const fetchMessages = async () => {
+      setError(null);
       try {
-        const [fetchedMessages, total] = await getMessages(
-          currentPage,
-          itemsPerPage
-        );
+        let fetchedMessages;
+        let total;
+        if (search) {
+          [fetchedMessages, total] = await getSearchMessages(
+            search,
+            currentPage,
+            itemsPerPage
+          );
+        } else {
+          [fetchedMessages, total] = await getMessages(
+            currentPage,
+            itemsPerPage
+          );
+        }
         setMessages(fetchedMessages);
         setTotalMessages(total);
-        // Reset individual checked state when messages change
         const newIndividualCheckedState = fetchedMessages.reduce(
           (acc, message) => {
             acc[message.id] = false;
@@ -60,14 +71,25 @@ function Email() {
           {} as { [key: number]: boolean }
         );
         setIndividualCheckedState(newIndividualCheckedState);
-      } catch (error) {
-        console.error("Error fetching messages", error);
+      } catch (err) {
+        console.error("Error fetching messages", err);
         setError("Error fetching messages");
       }
     };
 
     fetchMessages();
-  }, [currentPage]);
+  }, [currentPage, search, itemsPerPage]);
+
+  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSearch(search);
+    setCurrentPage(1);
+  };
 
   // Function to toggle the select-all checkbox
   const toggleCheckbox = () => {
@@ -179,12 +201,16 @@ function Email() {
 
   return (
     <section id="email" className="email-section">
-      <form className="email-search-bar">
-        <span className="material-symbols-outlined">search</span>
+      <form className="email-search-bar" onSubmit={handleSearchSubmit}>
+        <button className="search-button-icon" type="submit">
+          <span className="material-symbols-outlined">search</span>
+        </button>
         <input
           className="search-input"
           type="search"
           placeholder="Search Mail"
+          value={search}
+          onChange={handleSearchInput}
         ></input>
       </form>
       <div className="email-list-container">
@@ -233,9 +259,7 @@ function Email() {
           </div>
         </div>
         <div className="email-list-body">
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : error ? (
+          {error ? (
             <div>{error}</div>
           ) : messages ? (
             messages.map((email) => (

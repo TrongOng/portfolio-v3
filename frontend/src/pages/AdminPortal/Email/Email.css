@@ -18,6 +18,17 @@
 .search:focus-within {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.75);
 }
+.search-button-icon {
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  display: flex;
+}
+.search-button-icon:hover {
+  background-color: #6751b9;
+  border-radius: 28px;
+}
+
 .search-input {
   font-size: 1rem;
   font-weight: 500;
@@ -27,7 +38,6 @@
   border: none;
   background: transparent;
   flex: 1;
-  cursor: pointer;
 }
 .search-input::placeholder,
 .email-search-bar .material-symbols-outlined {

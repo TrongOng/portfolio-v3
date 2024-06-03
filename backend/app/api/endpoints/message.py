@@ -48,7 +48,7 @@ def get_desc_messages(
     # Check if current page is greater than total pages
     if page > total_pages:
         # Return an empty list of messages and total count as 0
-        return [], 0
+        return [], total_count
     
     return messages, total_count
 
@@ -77,7 +77,7 @@ def search_messages(
     # Check if current page is greater than total pages
     if page > total_pages:
         # Return an empty list of messages and total count as 0
-        return [], 0
+        return [], total_count
     
     return messages, total_count
     
