@@ -1,6 +1,5 @@
 import "./Email.css";
 import { useEmailMessages } from "../../../hooks/useEmailMessages";
-import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 
 function Email() {

@@ -29,6 +29,7 @@ def get_desc_messages(
     db: Session = Depends(deps.get_db),
     page: int = 1,  # default to the first page
     items_per_page: int = 50,  # default number of items per page
+    current_user: models.User = Depends(deps.get_current_user),
 ) -> Tuple[List[models.Message], int]:
     """
     Retrieve paginated messages in descending order.
@@ -60,6 +61,7 @@ def search_messages(
     search: Optional[str] = None,
     page: int = 1,  # default to the first page
     items_per_page: int = 50,  # default number of items per page
+    current_user: models.User = Depends(deps.get_current_user),
 ) -> Tuple[List[schemas.Message], int]:
     
     # Calculate skip value based on page number and items per page
@@ -88,6 +90,7 @@ def get_message(
     *,
     db: Session = Depends(deps.get_db),
     message_id: int,
+    current_user: models.User = Depends(deps.get_current_user),
 ) -> models.Message:
     message = crud.message.get(db, id=message_id)
     if not message:
