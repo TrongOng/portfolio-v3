@@ -173,11 +173,15 @@ function Email() {
 
   // Function to navigate to the email details page when an email is clicked
   const handleMessageClick = async (id: number) => {
-    try {
-      // Toggle the is_open status
-      const updatedIsOpenStatus = !messages.find((email) => email.id === id)
-        ?.is_open;
+    // Toggle the is_open status
+    const email = messages.find((email) => email.id === id);
+    if (!email) {
+      console.error("Email not found");
+      return;
+    }
 
+    const updatedIsOpenStatus = !email.is_open;
+    try {
       // Update the is_open status in the backend
       await setIsOpen(id, updatedIsOpenStatus);
 
@@ -261,7 +265,7 @@ function Email() {
             messages.map((email) => (
               <div
                 key={email.id}
-                className="email-item"
+                className={`email-item ${email.is_open ? "open" : "closed"}`}
                 onClick={() => handleMessageClick(email.id)}
               >
                 <div className="email-icon">
