@@ -2,19 +2,18 @@
   height: 100%;
   margin: 0 10%;
   position: relative;
-  margin: 5rem 0rem;
 }
-.contact-container {
-  width: 50%;
-  margin: 0 auto;
-}
-
 .contact-title {
   font-size: 3rem;
   text-align: center;
   color: #a993fe;
   margin-bottom: 2rem;
 }
+.contact-container {
+  width: 60%;
+  margin: 0 auto;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -35,7 +34,7 @@
   color: #fff;
   background: #130f2a;
   border-radius: 0.6rem;
-  border: 1.5px solid #6751b9;
+  border: 2px solid #6751b9;
   padding: 1rem;
   resize: none;
 }
@@ -43,7 +42,7 @@
   font-size: 1rem;
   font-weight: 500;
   color: #fff;
-  border: 1.5px solid #a892fe;
+  border: 2px solid #a892fe;
   border-radius: 0.6rem;
   background: linear-gradient(90deg, #a892fe 0%, #8064e8 100%);
   padding: 0.7rem;
@@ -84,13 +83,6 @@
   .contact-title {
     font-size: 1.75rem;
   }
-  .contact-form input,
-  .contact-form textarea {
-    font-size: 0.5rem;
-  }
-  .contact-form button {
-    font-size: 0.5rem;
-  }
   .name-container {
     grid-gap: 0.5rem;
   }
@@ -101,12 +93,5 @@
 @media screen and (max-width: 321px) {
   .contact-title {
     font-size: 1.5rem;
-  }
-  .contact-form input,
-  .contact-form textarea {
-    font-size: 0.35rem;
-  }
-  .contact-form button {
-    font-size: 0.35rem;
   }
 }
