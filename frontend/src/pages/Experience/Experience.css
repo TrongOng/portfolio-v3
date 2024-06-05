@@ -10,10 +10,7 @@
   margin-bottom: 2rem;
 }
 .experience-content {
-  margin: 2rem 2rem;
-}
-.experience-subtitle {
-  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 .experience-container h5 {
   font-size: 1.5rem;
@@ -29,7 +26,7 @@
   justify-content: center;
   color: #6751b9;
   border-radius: 0.65rem;
-  border: 1.5px solid #6751b9;
+  border: 2px solid #6751b9;
   background: #130f2a;
   z-index: 3;
   cursor: pointer;
@@ -40,29 +37,21 @@
   color: #6751b9;
 }
 
-.slick-arrow.slick-next:before {
-  content: "";
-}
-
+.slick-arrow.slick-next:before,
 .slick-arrow.slick-prev:before {
   content: "";
 }
+
 @media (max-width: 1025px) {
   .experience-title {
     font-size: 2.5rem;
     margin-bottom: 1rem;
   }
-  .experience-subtitle {
-    font-size: 1.75rem;
-  }
 }
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   .experience-title {
     font-size: 2.25rem;
     margin-bottom: 0.75rem;
-  }
-  .experience-subtitle {
-    font-size: 1.5rem;
   }
 }
 
@@ -70,9 +59,6 @@
   .experience-title {
     font-size: 2rem;
     margin-bottom: 0rem;
-  }
-  .experience-subtitle {
-    font-size: 1.25rem;
   }
 }
 @media screen and (max-width: 376px) {

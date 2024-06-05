@@ -27,7 +27,7 @@ function Experience() {
     prevArrow: <CustomArrow type="prev" />,
     responsive: [
       {
-        breakpoint: 769,
+        breakpoint: 820,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -38,11 +38,8 @@ function Experience() {
   return (
     <>
       <section id="experience" className="experience-section">
-        <div>
-          <h1 className="experience-title">Experience</h1>
-        </div>
+        <h1 className="experience-title">Career Experiences & Projects</h1>
         <div className="experience-content">
-          <p className="experience-subtitle">Work</p>
           <Slider {...settings}>
             {WORK_EXPERIENCE.map((item) => (
               <ExperienceCard key={item.title} details={item} />
@@ -50,7 +47,6 @@ function Experience() {
           </Slider>
         </div>
         <div className="experience-content">
-          <p className="experience-subtitle">Projects</p>
           <div>
             <Slider {...settings}>
               {PROJECT_EXPERIENCE.map((item) => (

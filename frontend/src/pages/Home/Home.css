@@ -18,16 +18,13 @@
 
 .home-text-p1 {
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 600px;
 }
 
 .home-name {
   font-size: 3rem;
-  text-align: center;
   color: #a993fe;
   margin-bottom: 2rem;
-
-  /*Typing Animation*/
   display: inline-block;
   padding-right: 10px;
   border-right: 3px solid #a993fe;
@@ -36,6 +33,7 @@
   overflow: hidden;
   animation: typing 2s steps(20), cursor 0.5s step-end infinite alternate;
 }
+
 @keyframes typing {
   from {
     width: 0;
@@ -53,8 +51,8 @@
 }
 
 .home-text-p2 {
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-size: 1.75rem;
+  font-weight: 600px;
   margin-bottom: 1rem;
 }
 
@@ -121,7 +119,6 @@
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
   }
-
   .home-btn-container button {
     font-size: 0.75rem;
     width: 7rem;
