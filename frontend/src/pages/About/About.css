@@ -34,3 +34,13 @@
     margin-bottom: 1rem;
   }
 }
+@media screen and (max-width: 376px) {
+  .about-title {
+    font-size: 1.75rem;
+  }
+}
+@media screen and (max-width: 321px) {
+  .about-title {
+    font-size: 1.5rem;
+  }
+}
