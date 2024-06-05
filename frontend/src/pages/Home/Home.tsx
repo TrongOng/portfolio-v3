@@ -3,7 +3,24 @@ import LinkedinSvg from "../../images/linkedin";
 import GithubSvg from "../../images/github";
 import Profile from "../../images/trong-profile.png";
 
+import { useRef, useEffect, useState } from "react";
+
 function Home() {
+  const myRef = useRef<HTMLHeadingElement>(null);
+  const [myElementIsVisible, setMyElementIsVisible] = useState(false);
+  console.log("myElementIsVisible", myElementIsVisible);
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      setMyElementIsVisible(entry.isIntersecting);
+    });
+    if (myRef.current) {
+      observer.observe(myRef.current);
+    }
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   return (
     <>
       <section id="home" className="home-section">
@@ -13,8 +30,10 @@ function Home() {
           </div>
           <div className="home-text">
             <p className="home-text-p1">Hello, I'm</p>
-            <h1 className="home-name">John Doe</h1>
-            <p className="home-text-p2">Software Developer</p>
+            <h1 ref={myRef} className={myElementIsVisible ? "home-name" : ""}>
+              {myElementIsVisible ? "John Doe" : ""}
+            </h1>
+            <p className="home-text-p2"> Software Developer</p>
             <div className="home-btn-container">
               <button>Download CV</button>
               <button>Contact Info</button>
