@@ -14,9 +14,7 @@
   margin: 0 auto;
 }
 
-.footer-content .footer-social-icon,
-.footer-content .footer-nav,
-.footer-content .footer-copyright {
+.footer-content div {
   margin-bottom: 1rem;
 }
 
@@ -31,7 +29,7 @@
   margin: 0 1rem;
 }
 
-.footer-item {
+.footer-nav a {
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -40,7 +38,7 @@
   cursor: pointer;
 }
 
-.footer-item:before {
+.footer-nav a:before {
   content: " ";
   width: 2rem;
   height: 0.2rem;
@@ -53,61 +51,48 @@
   transition: all 0.3s ease;
 }
 
-.footer-item:hover::before {
+.footer-nav a:hover::before {
   width: 100%;
   transform: translateX(0);
   opacity: 1;
 }
-@media screen and (max-width: 769px) {
-  .instagram-icon,
-  .twitter-icon,
-  .linkedin-icon {
-    width: 26px;
-    height: 26px;
-  }
-  .github-icon {
-    width: 21px;
-    height: 21px;
-  }
-}
 
-@media screen and (max-width: 426px) {
-  .footer-content .footer-social-icon {
-    margin-bottom: 0.2rem;
-  }
-  .footer-item {
-    font-size: 0.5rem;
-  }
-  .footer-copyright {
-    font-size: 0.5rem;
+@media screen and (max-width: 550px) {
+  .footer-nav a,
+  .footer-copyright p {
+    font-size: 0.8rem;
   }
   .instagram-icon,
   .twitter-icon,
   .linkedin-icon {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
   }
   .github-icon {
-    width: 15px;
-    height: 15px;
+    width: 19px;
+    height: 19px;
   }
 }
 
-@media screen and (max-width: 321px) {
-  .footer-content .footer-social-icon {
-    margin-bottom: 0.2rem;
+@media screen and (max-width: 470px) {
+  .footer-nav a,
+  .footer-copyright p {
+    font-size: 0.5rem;
   }
-  .footer-item {
-    font-size: 0.4rem;
+  .footer-content div {
+    margin-bottom: 0.5rem;
   }
-  .footer-copyright {
+}
+@media screen and (max-width: 350px) {
+  .footer-nav a,
+  .footer-copyright p {
     font-size: 0.4rem;
   }
   .instagram-icon,
   .twitter-icon,
   .linkedin-icon {
-    width: 15px;
-    height: 15px;
+    width: 18px;
+    height: 18px;
   }
   .github-icon {
     width: 13px;

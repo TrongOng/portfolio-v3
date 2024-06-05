@@ -109,42 +109,23 @@ function Footer() {
           <div className="footer-nav">
             <ul>
               <li>
-                <a
-                  className="footer-item"
-                  href="#home"
-                  onClick={() => handleMenuItemClick("home")}
-                >
+                <a href="#home" onClick={() => handleMenuItemClick("home")}>
                   Home
                 </a>
               </li>
               <li>
-                <a
-                  className="footer-item"
-                  onClick={() => handleMenuItemClick("about")}
-                >
-                  About
-                </a>
+                <a onClick={() => handleMenuItemClick("about")}>About</a>
               </li>
               <li>
-                <a
-                  className="footer-item"
-                  onClick={() => handleMenuItemClick("experience")}
-                >
+                <a onClick={() => handleMenuItemClick("experience")}>
                   Experience
                 </a>
               </li>
               <li>
-                <a
-                  className="footer-item"
-                  onClick={() => handleMenuItemClick("contact")}
-                >
-                  Contact Me
-                </a>
+                <a onClick={() => handleMenuItemClick("contact")}>Contact Me</a>
               </li>
               <li>
-                <Link to="/login" className="footer-item">
-                  Admin Portal
-                </Link>
+                <Link to="/login">Admin Portal</Link>
               </li>
             </ul>
           </div>
