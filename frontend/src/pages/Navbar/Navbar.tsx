@@ -55,7 +55,9 @@ function Navbar() {
   return (
     <section className="navbar-section">
       <nav className={`navbar-container ${openMenu ? "active" : ""}`}>
-        <div className="nav-logo">John Doe</div>
+        <div className="nav-logo">
+          <span>Trong Ong</span>
+        </div>
         <button
           className={`nav-btn ${openMenu ? "active" : ""}`}
           onClick={toggleMenu}

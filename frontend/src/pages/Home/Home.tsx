@@ -26,17 +26,17 @@ function Home() {
       <section id="home" className="homepage-section">
         <div className="home-container">
           <div className="home-picture">
-            <img src={Profile} alt="John Doe profile picture" />
+            <img src={Profile} alt="profile picture" />
           </div>
           <div className="home-text">
             <p className="home-text-p1">Hello, I'm</p>
             <h1 ref={myRef} className={myElementIsVisible ? "home-name" : ""}>
-              {myElementIsVisible ? "John Doe" : ""}
+              {myElementIsVisible ? "Trong Ong" : ""}
             </h1>
             <p className="home-text-p2"> Software Developer</p>
             <div className="home-btn-container">
               <button>Download CV</button>
-              <button>Contact Info</button>
+              <button>Contact Me</button>
             </div>
             <div className="home-socials-container">
               <LinkedinSvg className="home-icon" />

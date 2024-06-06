@@ -131,7 +131,8 @@ function Footer() {
           </div>
           <div className="footer-copyright">
             <p>
-              Copyright &copy;{currentYear}; Designed by <span>John Doe</span>
+              &copy;{currentYear} Designed by <span>Trong Ong</span> | All
+              Rights Reserved
             </p>
           </div>
         </footer>
