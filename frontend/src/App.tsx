@@ -1,3 +1,4 @@
+import "./App.css";
 // Components
 import Navbar from "./pages/Navbar/Navbar.tsx";
 import Footer from "./pages/Footer/Footer.tsx";

@@ -23,7 +23,7 @@ function Home() {
   }, []);
   return (
     <>
-      <section id="home" className="home-section">
+      <section id="home" className="homepage-section">
         <div className="home-container">
           <div className="home-picture">
             <img src={Profile} alt="John Doe profile picture" />
