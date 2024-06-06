@@ -22,8 +22,12 @@
   color: #a993fe;
   margin-bottom: 2rem;
   display: inline-block;
+
+  /* cursor blinking style */
   padding-right: 10px;
-  border-right: 3px solid #a993fe;
+  border-right-width: 3px;
+  border-right-style: solid;
+
   width: fit-content;
   white-space: nowrap;
   overflow: hidden;
@@ -76,20 +80,10 @@
   cursor: pointer;
 }
 
-.home-btn-container button:hover,
-.home-btn-container button:hover {
-  background: linear-gradient(90deg, #a892fe 0%, #8064e8 100%);
-}
-
 .home-icon {
   cursor: pointer;
   height: 3rem;
   width: 3rem;
-  fill: #fff;
-}
-
-.home-icon:hover {
-  fill: #a993fe;
 }
 
 /* Media Query for Responsive */

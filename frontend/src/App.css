@@ -3,3 +3,109 @@
   margin: 0 10%;
   position: relative;
 }
+/* Title are the same css - fix later */
+/* Navbar */
+.navbar-section {
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 29px 80px rgba(0, 0, 0, 0.3);
+}
+.navbar-items a {
+  color: #fff;
+}
+.navbar-items a:before {
+  background: linear-gradient(90deg, #a993fe 0%, #7e61e7 100%);
+}
+.nav-btn {
+  color: #fff;
+  background: linear-gradient(90deg, #a993fe -0.13%, #7e61e7 99.87%);
+}
+/* Home */
+.home-name {
+  border-right-color: #a993fe;
+}
+.home-btn-container button:hover,
+.home-btn-container button:hover {
+  background: linear-gradient(90deg, #a892fe 0%, #8064e8 100%);
+}
+.home-icon {
+  fill: #fff;
+}
+
+.home-icon:hover {
+  fill: #a993fe;
+}
+
+/* About */
+.about-title {
+  color: #a993fe;
+}
+
+/* Experience */
+.experience-title {
+  color: #a993fe;
+}
+.slick-arrow.slick-prev,
+.slick-arrow.slick-next {
+  color: #6751b9;
+  border: 2px solid #6751b9;
+  background: #130f2a;
+}
+.slick-arrow.slick-prev:hover,
+.slick-arrow.slick-next:hover {
+  background: #130f2a;
+  color: #6751b9;
+}
+
+/* Contact */
+.contact-title {
+  color: #a993fe;
+}
+.contact-form input,
+.contact-form textarea {
+  color: #fff;
+  background: #130f2a;
+  border: 2px solid #6751b9;
+}
+.contact-form button {
+  color: #fff;
+  border: 2px solid #a892fe;
+  background: linear-gradient(90deg, #a892fe 0%, #8064e8 100%);
+}
+.contact-form button:hover {
+  background: transparent;
+}
+/* Footer */
+.footer-nav a {
+  color: #fff;
+}
+.footer-nav a:before {
+  background: linear-gradient(90deg, #a993fe 0%, #7e61e7 100%);
+}
+
+/* Login */
+.login-container {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: radial-gradient(closest-side, #1b2735 0%, #090a0f 100%);
+}
+.login-title {
+  color: #fff;
+}
+.login-form input,
+.login-form textarea {
+  color: #fff;
+  background: #130f2a;
+  border: 1.5px solid #6751b9;
+}
+.forgot-password a {
+  color: #fff;
+}
+.login-form button {
+  color: #fff;
+  border: 1.5px solid #a892fe;
+  background: linear-gradient(90deg, #a892fe 0%, #8064e8 100%);
+}
+
+.login-form button:hover {
+  color: #a892fe;
+}

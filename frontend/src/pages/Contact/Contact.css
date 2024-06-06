@@ -1,7 +1,6 @@
 .contact-title {
   font-size: 3rem;
   text-align: center;
-  color: #a993fe;
   margin-bottom: 2rem;
 }
 .contact-container {
@@ -26,26 +25,16 @@
   flex: 1;
   width: 100%;
   font-size: 0.9rem;
-  color: #fff;
-  background: #130f2a;
   border-radius: 0.6rem;
-  border: 2px solid #6751b9;
   padding: 1rem;
 }
 .contact-form button {
   font-size: 1rem;
   font-weight: 600;
-  color: #fff;
-  border: 2px solid #a892fe;
   border-radius: 0.6rem;
-  background: linear-gradient(90deg, #a892fe 0%, #8064e8 100%);
   padding: 0.7rem;
   transition: all 0.3s ease;
   cursor: pointer;
-}
-
-.contact-form button:hover {
-  background: transparent;
 }
 
 @media screen and (max-width: 1025px) {

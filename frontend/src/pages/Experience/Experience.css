@@ -1,7 +1,6 @@
 .experience-title {
   font-size: 3rem;
   text-align: center;
-  color: #a993fe;
   margin-bottom: 2rem;
 }
 .experience-content {
@@ -19,19 +18,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6751b9;
   border-radius: 0.65rem;
-  border: 2px solid #6751b9;
-  background: #130f2a;
   z-index: 3;
   cursor: pointer;
 }
-.slick-arrow.slick-prev:hover,
-.slick-arrow.slick-next:hover {
-  background: #130f2a;
-  color: #6751b9;
-}
-
 .slick-arrow.slick-next:before,
 .slick-arrow.slick-prev:before {
   content: "";
