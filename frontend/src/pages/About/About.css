@@ -33,6 +33,9 @@
     font-size: 2rem;
     margin-bottom: 1rem;
   }
+  .text-container p {
+    font-size: 0.75rem;
+  }
 }
 @media screen and (max-width: 376px) {
   .about-title {

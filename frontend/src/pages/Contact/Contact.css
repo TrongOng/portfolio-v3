@@ -102,11 +102,4 @@
   .contact-title {
     font-size: 1.5rem;
   }
-  .contact-form input,
-  .contact-form textarea {
-    font-size: 0.35rem;
-  }
-  .contact-form button {
-    font-size: 0.35rem;
-  }
 }
