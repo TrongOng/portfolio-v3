@@ -1,14 +1,12 @@
 /* MESSAGE SECTION */
 .message-section {
   height: 100%;
-  margin: 5rem 10%; /* Adjusted margin */
+  margin: 5rem 10%;
   position: relative;
 }
 
 .message-container {
-  background: #130f2a;
   border-radius: 0.6rem;
-  border: 1.5px solid #6751b9;
   overflow: hidden;
   width: 80%;
   margin: 0 auto;
@@ -30,20 +28,12 @@
 .message-container button {
   font-size: 1rem;
   font-weight: 500;
-  color: #fff;
-  border: 1.5px solid #a892fe;
   border-radius: 0.6rem;
-  background: linear-gradient(90deg, #a892fe 0%, #8064e8 100%);
   padding: 0.7rem 1.5rem;
   transition: all 0.3s ease;
   cursor: pointer;
   margin: 1rem;
   flex: 1;
-}
-
-.message-container button:hover {
-  color: #a892fe;
-  background: transparent;
 }
 
 .message-container a {

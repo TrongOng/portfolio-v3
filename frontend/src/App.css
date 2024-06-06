@@ -124,3 +124,43 @@
 .login-form button:hover {
   color: #124e66;
 }
+
+/* Email  */
+.email-search-bar {
+  border: 1px solid #124e66;
+}
+.search:focus-within {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.75);
+}
+.search-button-icon:hover {
+  background: #748d92;
+}
+.search-input::placeholder,
+.email-search-bar .material-symbols-outlined {
+  color: #ccc5c5;
+}
+.email-list-container {
+  border: 1px solid #124e66;
+}
+.email-item.open {
+  color: #124e66;
+}
+.email-item:hover {
+  border: 1px solid #d3d9d4;
+  color: #2e3944;
+  background: transparent;
+}
+/* Messages */
+.message-container {
+  background: #2e3944;
+  border: 1px solid #124e66;
+}
+.message-container button {
+  color: #fff;
+  border: 1px solid #124e66;
+  background: linear-gradient(90deg, #748d92 0%, #124e66 100%);
+}
+
+.message-container button:hover {
+  background: transparent;
+}

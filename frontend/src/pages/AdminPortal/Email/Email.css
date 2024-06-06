@@ -1,9 +1,4 @@
 /* EMAIL SECTION */
-.email-section {
-  height: 100%;
-  margin: 0 10%;
-  position: relative;
-}
 
 /* Search Bar */
 .email-search-bar {
@@ -12,11 +7,7 @@
   justify-content: center;
   padding: 14px;
   border-radius: 28px;
-  border: 1.5px solid #6751b9;
   margin-bottom: 2rem;
-}
-.search:focus-within {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.75);
 }
 .search-button-icon {
   background: transparent;
@@ -25,30 +16,22 @@
   display: flex;
 }
 .search-button-icon:hover {
-  background-color: #6751b9;
   border-radius: 28px;
 }
 
 .search-input {
   font-size: 1rem;
   font-weight: 500;
-  color: #fff;
   margin-left: 14px;
   outline: none;
   border: none;
   background: transparent;
   flex: 1;
 }
-.search-input::placeholder,
-.email-search-bar .material-symbols-outlined {
-  color: #ccc5c5;
-}
-
 /* Email Section Body */
 .email-list-container {
   padding: 10px;
   border-radius: 0.6rem;
-  border: 1.5px solid #6751b9;
 }
 .email-tools {
   display: flex;
@@ -77,20 +60,9 @@
   display: flex;
   gap: 1rem;
 }
-.email-item.open {
-  color: #a892fe;
-}
-
-.email-item:hover {
-  box-shadow: 0 0 2px #a892fe;
-  color: #a892fe;
-  background: transparent;
-}
-
 .email-icon {
   cursor: pointer;
 }
-
 .email-content {
   flex-grow: 1;
   margin-left: 1rem;

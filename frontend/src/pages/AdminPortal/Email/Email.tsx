@@ -23,7 +23,7 @@ function Email() {
   } = useEmailMessages();
 
   return (
-    <section id="email" className="email-section">
+    <section id="email" className="homepage-section">
       <form className="email-search-bar" onSubmit={handleSearchSubmit}>
         <button className="search-button-icon" type="submit">
           <span className="material-symbols-outlined">search</span>
