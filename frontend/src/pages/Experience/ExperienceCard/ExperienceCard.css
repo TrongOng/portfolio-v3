@@ -8,7 +8,7 @@
   height: 350px;
   overflow-y: auto;
 }
-.work-experience-card h1 {
+.work-experience-card h6 {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.2rem;
