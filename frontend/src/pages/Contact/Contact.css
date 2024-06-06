@@ -27,6 +27,7 @@
   font-size: 0.9rem;
   border-radius: 0.6rem;
   padding: 1rem;
+  resize: none;
 }
 .contact-form button {
   font-size: 1rem;

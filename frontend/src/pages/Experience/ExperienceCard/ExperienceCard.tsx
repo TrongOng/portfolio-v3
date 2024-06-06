@@ -9,24 +9,20 @@ interface ExperienceDetails {
 
 function ExperienceCard({ details }: { details: ExperienceDetails }) {
   return (
-    <div className="work-experience-card">
+    <section className="work-experience-card">
       <h6>{details.title}</h6>
-      <div className="work-duration">{details.date}</div>
-      {details.responsibilities && ( // Conditionally render responsibilities
+      <time className="work-duration">{details.date}</time>
+      {(details.responsibilities || details.description) && (
         <ul>
-          {details.responsibilities.map((item: string) => (
-            <li key={item}>{item}</li>
+          {details.responsibilities?.map((item, index) => (
+            <li key={`responsibility-${index}`}>{item}</li>
+          ))}
+          {details.description?.map((item, index) => (
+            <li key={`description-${index}`}>{item}</li>
           ))}
         </ul>
       )}
-      {details.description && ( // Conditionally render description
-        <ul>
-          {details.description.map((item: string) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      )}
-    </div>
+    </section>
   );
 }
 

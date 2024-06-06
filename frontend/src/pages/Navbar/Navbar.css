@@ -61,11 +61,6 @@
   transition: all 0.4s ease;
   display: none;
 }
-.nav-btn:hover {
-  color: #a993fe;
-  background: #000;
-  border: 1px solid #a993fe;
-}
 
 /* Media Query for Responsive */
 @media screen and (max-width: 820px) {

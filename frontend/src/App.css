@@ -2,6 +2,7 @@
   height: 100%;
   margin: 0 10%;
   position: relative;
+  margin-bottom: 5rem;
 }
 /* Title are the same css - fix later */
 /* Navbar */
@@ -9,103 +10,117 @@
   background: rgba(0, 0, 0, 0.1);
   box-shadow: 0px 29px 80px rgba(0, 0, 0, 0.3);
 }
-.navbar-items a {
-  color: #fff;
+.navbar-items li:nth-child(5) > a {
+  color: red;
 }
 .navbar-items a:before {
-  background: linear-gradient(90deg, #a993fe 0%, #7e61e7 100%);
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
 }
 .nav-btn {
-  color: #fff;
-  background: linear-gradient(90deg, #a993fe -0.13%, #7e61e7 99.87%);
+  background: #124e66;
+}
+.nav-btn:hover {
+  color: #124e66;
+  background: #748d92;
+  border: 1px solid #d3d9d4;
 }
 /* Home */
 .home-name {
-  border-right-color: #a993fe;
+  color: #124e66;
+  border-right-color: #124e66;
+}
+.home-btn-container button {
+  border: #2e3944 1px solid;
 }
 .home-btn-container button:hover,
 .home-btn-container button:hover {
-  background: linear-gradient(90deg, #a892fe 0%, #8064e8 100%);
+  background: #748d92;
 }
 .home-icon {
-  fill: #fff;
+  fill: #d3d9d4;
 }
 
 .home-icon:hover {
-  fill: #a993fe;
+  fill: #748d92;
 }
 
 /* About */
 .about-title {
-  color: #a993fe;
+  color: #124e66;
 }
 
 /* Experience */
 .experience-title {
-  color: #a993fe;
+  color: #124e66;
 }
 .slick-arrow.slick-prev,
 .slick-arrow.slick-next {
-  color: #6751b9;
-  border: 2px solid #6751b9;
-  background: #130f2a;
+  color: #124e66;
+  border: 1px solid #124e66;
+  background: #748d92;
 }
 .slick-arrow.slick-prev:hover,
 .slick-arrow.slick-next:hover {
-  background: #130f2a;
-  color: #6751b9;
+  background: #212a31;
+  color: #124e66;
+}
+/* Experience Card */
+.work-experience-card {
+  background: #2e3944;
+  border: 1px solid #124e66;
+}
+.work-duration {
+  background: #212a31;
 }
 
 /* Contact */
 .contact-title {
-  color: #a993fe;
+  color: #124e66;
 }
 .contact-form input,
 .contact-form textarea {
-  color: #fff;
-  background: #130f2a;
-  border: 2px solid #6751b9;
+  background: #2e3944;
+  border: 1px solid #124e66;
 }
 .contact-form button {
   color: #fff;
-  border: 2px solid #a892fe;
-  background: linear-gradient(90deg, #a892fe 0%, #8064e8 100%);
+  border: 1px solid #124e66;
+  background: linear-gradient(90deg, #748d92 0%, #124e66 100%);
 }
 .contact-form button:hover {
   background: transparent;
 }
 /* Footer */
 .footer-nav a {
-  color: #fff;
+  color: #d3d9d4;
+}
+.footer-nav li:nth-child(5) > a {
+  color: red;
 }
 .footer-nav a:before {
-  background: linear-gradient(90deg, #a993fe 0%, #7e61e7 100%);
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
 }
 
 /* Login */
 .login-container {
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  background: radial-gradient(closest-side, #1b2735 0%, #090a0f 100%);
-}
-.login-title {
-  color: #fff;
+  background: #212a31;
 }
 .login-form input,
 .login-form textarea {
-  color: #fff;
-  background: #130f2a;
-  border: 1.5px solid #6751b9;
+  background: #2e3944;
+  border: 1px solid #124e66;
 }
 .forgot-password a {
   color: #fff;
 }
 .login-form button {
   color: #fff;
-  border: 1.5px solid #a892fe;
-  background: linear-gradient(90deg, #a892fe 0%, #8064e8 100%);
+  border: 1px solid #124e66;
+  background: linear-gradient(90deg, #748d92 0%, #124e66 100%);
 }
 
 .login-form button:hover {
-  color: #a892fe;
+  color: #124e66;
 }

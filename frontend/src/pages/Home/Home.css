@@ -19,7 +19,6 @@
 
 .home-name {
   font-size: 3rem;
-  color: #a993fe;
   margin-bottom: 2rem;
   display: inline-block;
 
@@ -76,7 +75,6 @@
   padding: 0.7rem;
   width: 8rem;
   border-radius: 2rem;
-  border: rgb(0, 0, 0) 0.1rem solid;
   cursor: pointer;
 }
 
