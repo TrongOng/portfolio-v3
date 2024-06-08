@@ -6,19 +6,14 @@ import { useAsync } from "@react-hookz/web";
 import { useEffect, useState } from "react";
 
 type FormFields = {
-  token: string;
   new_password: string;
 };
 
 function ResetPassword() {
   const navigate = useNavigate();
   const [resetPasswordState, resetPasswordActions] = useAsync(resetPassword);
-  const [status, setStatus] = useState<"not-executed" | "loading">(
-    "not-executed"
-  );
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token") || "";
-  const [error, setError] = useState<boolean>(false);
   const {
     handleSubmit,
     register,
@@ -26,21 +21,18 @@ function ResetPassword() {
   } = useForm<FormFields>();
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
-    setError(false);
     resetPasswordActions.execute(token, data.new_password);
   };
 
   useEffect(() => {
-    if (resetPasswordState.status === "success" && resetPasswordState.result) {
-      if (status === "not-executed") {
-        setStatus("loading");
-      }
+    if (resetPasswordState.status === "success") {
       navigate("/login");
+    } else if (resetPasswordState.status === "error") {
+      alert(
+        "An error occurred while resetting your password. Please try again."
+      );
     }
-    if (resetPasswordState.status === "error") {
-      setError(true);
-    }
-  }, [resetPasswordState, navigate, status]);
+  }, [resetPasswordState, navigate]);
 
   return (
     <section id="reset-password" className="reset-password-section">
@@ -53,7 +45,6 @@ function ResetPassword() {
                 required: "Password is required",
               })}
               type="password"
-              name="new_password"
               placeholder="New Password"
             />
             {errors.new_password && <div>{errors.new_password.message}</div>}

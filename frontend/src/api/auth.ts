@@ -25,9 +25,14 @@ export const resetPassword = async (
   token: string,
   new_password: string
 ): Promise<any> => {
-  const result = await axios.post(`${API}/password/forgot`, {
-    token,
-    new_password,
-  });
-  return result.data;
+  try {
+    const result = await axios.post(`${API}/password/reset`, {
+      token,
+      new_password,
+    });
+    return result.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
 };

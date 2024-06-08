@@ -11,10 +11,8 @@ type FormFields = {
 
 function ForgotPassword() {
   const [forgotPasswordState, forgotPasswordActions] = useAsync(forgotPassword);
-  const [status, setStatus] = useState<"not-executed" | "loading">(
-    "not-executed"
-  );
   const [error, setError] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
   const {
     handleSubmit,
@@ -22,25 +20,21 @@ function ForgotPassword() {
     formState: { errors },
   } = useForm<FormFields>();
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+  const onSubmit: SubmitHandler<FormFields> = (data) => {
     setError(false);
-    console.log(data);
+    setSuccess(false);
     forgotPasswordActions.execute(data.email);
   };
 
   useEffect(() => {
-    if (
-      forgotPasswordState.status === "success" &&
-      forgotPasswordState.result
-    ) {
-      if (status === "not-executed") {
-        setStatus("loading");
-      }
+    if (forgotPasswordState.status === "success") {
+      setSuccess(true);
     }
     if (forgotPasswordState.status === "error") {
       setError(true);
     }
-  }, [forgotPasswordState, status]);
+  }, [forgotPasswordState]);
+
   return (
     <section id="forgot-password" className="forgot-password-section">
       <div className="forgot-password-container">
@@ -55,11 +49,10 @@ function ForgotPassword() {
                 required: "Email is required",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Email Address not found",
+                  message: "Invalid email address",
                 },
               })}
               type="text"
-              name="email"
               placeholder="Email"
             />
             {errors.email && <div>{errors.email.message}</div>}
@@ -70,6 +63,16 @@ function ForgotPassword() {
           >
             {forgotPasswordState.status === "loading" ? "Loading..." : "Send"}
           </button>
+          {success && (
+            <div className="success-message">
+              Password reset email sent successfully! Check your email!
+            </div>
+          )}
+          {error && (
+            <div className="error-message">
+              An error occurred. Please try again.
+            </div>
+          )}
         </form>
       </div>
     </section>

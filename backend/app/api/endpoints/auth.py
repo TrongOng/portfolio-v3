@@ -138,28 +138,28 @@ def recover_password(
             status_code=404,
             detail="The user with this email does not exist in the system.",
         )
-    # password_reset_token = generate_password_reset_token(email=email)
-    # template = templates.TemplateResponse(
-    #     "password-reset.html",
-    #     {
-    #         "request": request,
-    #         "PASSWORD_RESET_TOKEN": password_reset_token,
-    #         "PROJECT_NAME": settings.PROJECT_NAME,
-    #         "COMPANY_ADDRESS": settings.COMPANY_ADDRESS,
-    #         "SUPPORT_EMAIL": settings.SUPPORT_EMAIL,
-    #         "name": user.first_name,
-    #     },
-    # )
-    # html_body = template.body.decode("utf-8")
+    password_reset_token = generate_password_reset_token(email=email)
+    template = templates.TemplateResponse(
+        "password-reset.html",
+        {
+            "request": request,
+            "PASSWORD_RESET_TOKEN": password_reset_token,
+            "PROJECT_NAME": settings.PROJECT_NAME,
+            "COMPANY_ADDRESS": settings.COMPANY_ADDRESS,
+            "SUPPORT_EMAIL": settings.SUPPORT_EMAIL,
+            "name": user.first_name,
+        },
+    )
+    html_body = template.body.decode("utf-8")
 
-    # postmark = PostmarkClient(server_token=settings.POSTMARK_TOKEN)
-    # postmark.emails.send(
-    #     From="trong@trongong.com",
-    #     # To=user.email,
-    #     To="trong@trongong.com",
-    #     Subject="Password Recovery",
-    #     HtmlBody=html_body,
-    # )
+    postmark = PostmarkClient(server_token=settings.POSTMARK_TOKEN)
+    postmark.emails.send(
+        From="trong@trongong.com",
+        # To=user.email,
+        To="trong@trongong.com",
+        Subject="Password Recovery",
+        HtmlBody=html_body,
+    )
     return {"msg": "A password recovery email was sent to your email"}
 
 
