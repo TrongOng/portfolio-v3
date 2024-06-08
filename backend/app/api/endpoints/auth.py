@@ -140,7 +140,7 @@ def recover_password(
         )
     password_reset_token = generate_password_reset_token(email=email)
     template = templates.TemplateResponse(
-        "forgot_password.html",
+        "password-reset.html",
         {
             "request": request,
             "PASSWORD_RESET_TOKEN": password_reset_token,
@@ -154,9 +154,10 @@ def recover_password(
 
     postmark = PostmarkClient(server_token=settings.POSTMARK_TOKEN)
     postmark.emails.send(
-        From="noreply@COMPANY.com",
-        To=user.email,
-        Subject="COMPANY NAME Password Recovery",
+        From="trong@trongong.com",
+        # To=user.email,
+        To="trong@trongong.com",
+        Subject="Password Recovery",
         HtmlBody=html_body,
     )
     return {"msg": "A password recovery email was sent to your email"}

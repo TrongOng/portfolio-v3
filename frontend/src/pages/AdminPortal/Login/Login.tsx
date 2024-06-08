@@ -1,6 +1,6 @@
 import "./Login.css";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { login } from "../../../api/auth";
 import { useAsync } from "@react-hookz/web";
 import { useEffect, useState } from "react";
@@ -81,7 +81,7 @@ function Login() {
             {errors.password && <div>{errors.password.message}</div>}
           </div>
           <div className="forgot-password">
-            <a href="#">Forgot password?</a>
+            <Link to="/forgot-password">Forgot password?</Link>
           </div>
           <button disabled={loginState.status === "loading"} type="submit">
             {loginState.status === "loading" ? "Loading..." : "Submit"}

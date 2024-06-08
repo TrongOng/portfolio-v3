@@ -9,6 +9,7 @@ interface FormFields {
   name: string;
   email: string;
   message: string;
+  honeypot: string;
 }
 
 function Contact() {
@@ -26,6 +27,12 @@ function Contact() {
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     setError(null);
     setStatus("loading");
+    // Check the honeypot field before proceeding
+    if (data.honeypot) {
+      setError("Spam detected.");
+      setStatus("error");
+      return;
+    }
     try {
       await messageActions.execute(data);
       setStatus("success");
@@ -76,6 +83,12 @@ function Contact() {
             {errors.message && (
               <div className="error-message">{errors.message.message}</div>
             )}
+            {/* Honeypot field */}
+            <input
+              type="text"
+              {...register("honeypot")}
+              style={{ display: "none" }}
+            />
             <button type="submit" disabled={status === "loading"}>
               SEND
             </button>
