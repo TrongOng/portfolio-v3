@@ -10,7 +10,6 @@ type FormFields = {
 };
 
 function ForgotPassword() {
-  const navigate = useNavigate();
   const [forgotPasswordState, forgotPasswordActions] = useAsync(forgotPassword);
   const [status, setStatus] = useState<"not-executed" | "loading">(
     "not-executed"
@@ -23,8 +22,9 @@ function ForgotPassword() {
     formState: { errors },
   } = useForm<FormFields>();
 
-  const onSubmit: SubmitHandler<FormFields> = (data) => {
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
     setError(false);
+    console.log(data);
     forgotPasswordActions.execute(data.email);
   };
 
@@ -36,12 +36,11 @@ function ForgotPassword() {
       if (status === "not-executed") {
         setStatus("loading");
       }
-      navigate("/reset-password");
     }
     if (forgotPasswordState.status === "error") {
       setError(true);
     }
-  }, [forgotPasswordState, navigate, status]);
+  }, [forgotPasswordState, status]);
   return (
     <section id="forgot-password" className="forgot-password-section">
       <div className="forgot-password-container">

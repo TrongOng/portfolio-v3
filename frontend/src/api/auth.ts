@@ -7,14 +7,18 @@ export const login = async (email: string, password: string): Promise<any> => {
     email,
     password,
   });
+  console.log(result);
   return result.data;
 };
 
 export const forgotPassword = async (email: string): Promise<any> => {
-  const result = await axios.post(`${API}/password/forgot`, {
-    email,
-  });
-  return result.data;
+  try {
+    const result = await axios.post(`${API}/password/forgot`, email);
+    return result.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
 };
 
 export const resetPassword = async (

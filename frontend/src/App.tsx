@@ -17,6 +17,7 @@ import Message from "./pages/AdminPortal/Email/Message/Message.tsx";
 
 // Reset Password Pages
 import ForgotPassword from "./pages/AdminPortal/Reset/ForgotPassword/ForgotPassword.tsx";
+import ResetPassword from "./pages/AdminPortal/Reset/ResetPassword/ResetPassword.tsx";
 
 // Auth + Routers
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
@@ -68,6 +69,16 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <ForgotPassword />,
+      },
+    ],
+  },
+  {
+    path: "/reset-password",
+    element: <NavFooterWrapper />,
+    children: [
+      {
+        path: "",
+        element: <ResetPassword />,
       },
     ],
   },
