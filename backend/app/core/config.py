@@ -18,9 +18,9 @@ class Settings(BaseSettings):
     SECRET_KEY: str = os.getenv("SECRET_KEY")
 
     # project information
-    PROJECT_NAME: str = "FastAPI"
-    COMPANY_ADDRESS: str = "1234 Main St"
-    SUPPORT_EMAIL: EmailStr = "user@example.com"
+    PROJECT_NAME: str = "Trong's Website"
+    COMPANY_ADDRESS: str = "Youngstown, OH"
+    SUPPORT_EMAIL: EmailStr = "trong@trongong.com"
 
     # 60 minutes * 24 hours * 30 days = 30 days
     # 60 minutes * 24 hours * 8 days = 8 days
