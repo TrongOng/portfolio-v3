@@ -35,6 +35,8 @@ class Settings(BaseSettings):
 
     POSTMARK_TOKEN: str = os.getenv("POSTMARK_TOKEN")
 
+    RECAPTCHA_SECRET: str = os.getenv("RECAPTCHA_SECRET")
+
     # Use to define origins if not allowing all
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = os.getenv("BACKEND_CORS_ORIGINS")
 

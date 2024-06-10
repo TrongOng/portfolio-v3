@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { createMessage } from "../../api/message";
 import { useAsync } from "@react-hookz/web";
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface FormFields {
   title: string;
@@ -13,6 +14,7 @@ interface FormFields {
 }
 
 function Contact() {
+  const [recaptcha, setRecaptcha] = useState<string | null>(null);
   const [messageState, messageActions] = useAsync(createMessage);
   const [status, setStatus] = useState<
     "not-executed" | "loading" | "success" | "error"
@@ -33,7 +35,13 @@ function Contact() {
       setStatus("error");
       return;
     }
+    if (!recaptcha) {
+      setError("Please complete the reCAPTCHA.");
+      setStatus("error");
+      return;
+    }
     try {
+      const token = await recaptchaRef.current.executeAsync();
       await messageActions.execute(data);
       setStatus("success");
     } catch (err) {

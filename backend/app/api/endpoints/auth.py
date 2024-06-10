@@ -155,8 +155,7 @@ def recover_password(
     postmark = PostmarkClient(server_token=settings.POSTMARK_TOKEN)
     postmark.emails.send(
         From="trong@trongong.com",
-        # To=user.email,
-        To="trong@trongong.com",
+        To=user.email,
         Subject="Password Recovery",
         HtmlBody=html_body,
     )

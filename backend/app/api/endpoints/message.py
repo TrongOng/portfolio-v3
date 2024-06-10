@@ -12,7 +12,6 @@ from fastapi.templating import Jinja2Templates
 router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
 
-
 # create message from non-user
 @router.post("", response_model=schemas.Message)
 def create_message(

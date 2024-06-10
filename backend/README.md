@@ -1,11 +1,25 @@
-# Install
+# Install Dependency
 
 - pip install -r requirements.txt
 
+### Update Requirement File
+
+- pip freeze > requirements.txt
+
 # Virtual Environment
+
+### Create Environment
+
+- python -m venv venv
+
+### Activate Environment
 
 - source backend/.venv/bin/activate
 - source .venv/bin/activate
+
+### De-Activate Environment
+
+- deactivate
 
 # Start API Server
 
