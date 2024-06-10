@@ -1,6 +1,7 @@
 import "./Contact.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createMessage } from "../../api/message";
+import { verifyRecaptcha } from "../../api/recaptcha";
 import { useAsync } from "@react-hookz/web";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -14,7 +15,8 @@ interface FormFields {
 }
 
 function Contact() {
-  const [recaptcha, setRecaptcha] = useState<string | null>(null);
+  const [recaptchanState, recaptchaActions] = useAsync(verifyRecaptcha);
+  const [recaptchaToken, setRecaptchaToken] = useState("");
   const [messageState, messageActions] = useAsync(createMessage);
   const [status, setStatus] = useState<
     "not-executed" | "loading" | "success" | "error"
@@ -26,6 +28,17 @@ function Contact() {
     formState: { errors },
   } = useForm<FormFields>();
 
+  const onChange = (recaptchaToken: string | null) => {
+    // Update the value of recaptchaToken when the reCAPTCHA challenge is completed
+    if (recaptchaToken) {
+      setRecaptchaToken(recaptchaToken);
+    } else {
+      setRecaptchaToken("");
+      setStatus("not-executed");
+      setError(null);
+    }
+  };
+
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     setError(null);
     setStatus("loading");
@@ -35,13 +48,15 @@ function Contact() {
       setStatus("error");
       return;
     }
-    if (!recaptcha) {
+    if (!recaptchaToken) {
       setError("Please complete the reCAPTCHA.");
       setStatus("error");
       return;
     }
     try {
-      const token = await recaptchaRef.current.executeAsync();
+      // Verify the reCAPTCHA token
+      await recaptchaActions.execute({ recaptchaToken });
+      // If the verification is successful, proceed to submit the message
       await messageActions.execute(data);
       setStatus("success");
     } catch (err) {
@@ -96,6 +111,10 @@ function Contact() {
               type="text"
               {...register("honeypot")}
               style={{ display: "none" }}
+            />
+            <ReCAPTCHA
+              sitekey="6LeGv_UpAAAAAGDPGrfuJXOIcfXgOn3Mwp-TULi4"
+              onChange={onChange}
             />
             <button type="submit" disabled={status === "loading"}>
               SEND

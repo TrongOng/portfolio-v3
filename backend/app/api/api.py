@@ -1,11 +1,11 @@
 from fastapi import APIRouter
 
 from app.api.endpoints import (
-    recaptcha,
     auth,
     admin,
     profile,
     message,
+    recaptcha,
 )
 
 
