@@ -1,56 +1,11 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSectionNavigation } from "../../hooks/useSectionNavigation";
 import "./Navbar.css";
 
 function Navbar() {
-  const [openMenu, setOpenMenu] = useState(false);
-  const [scrollTarget, setScrollTarget] = useState<string | null>(null);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const toggleMenu = () => {
-    setOpenMenu(!openMenu);
-  };
-
-  const handleMenuItemClick = (id: string) => {
-    if (location.pathname === "/") {
-      scrollToSection(id);
-    } else {
-      setScrollTarget(id);
-      navigate("/");
-    }
-  };
-
-  const scrollToSection = (id: string) => {
-    const targetSection = document.getElementById(id);
-    const navbar = document.querySelector(".navbar-section") as HTMLElement;
-    if (targetSection && navbar) {
-      const navbarHeight = navbar.offsetHeight;
-      const offsetTop = targetSection.offsetTop - navbarHeight;
-      window.scrollTo({ top: offsetTop, behavior: "smooth" });
-      setOpenMenu(false);
-    }
-  };
-
-  useEffect(() => {
-    if (scrollTarget) {
-      scrollToSection(scrollTarget);
-      setScrollTarget(null);
-    }
-  }, [location.pathname]);
-
-  useEffect(() => {
-    const closeMenuOnClickOutside = (event: MouseEvent) => {
-      const navbar = document.querySelector(".navbar-section");
-      if (navbar && !navbar.contains(event.target as Node)) {
-        setOpenMenu(false);
-      }
-    };
-    document.addEventListener("click", closeMenuOnClickOutside);
-    return () => {
-      document.removeEventListener("click", closeMenuOnClickOutside);
-    };
-  }, []);
+  const { useMenuState, useScrollBehavior } = useSectionNavigation();
+  const { openMenu, toggleMenu } = useMenuState();
+  const { handleMenuItemClick } = useScrollBehavior();
 
   return (
     <section className="navbar-section">

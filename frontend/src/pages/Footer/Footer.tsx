@@ -1,14 +1,12 @@
 import "./Footer.css";
 import { Link } from "react-router-dom";
+import { useSectionNavigation } from "../../hooks/useSectionNavigation";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
-  const handleMenuItemClick = (id: string) => {
-    const targetSection = document.getElementById(id);
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const { useScrollBehavior } = useSectionNavigation();
+  const { handleMenuItemClick } = useScrollBehavior();
+
   return (
     <>
       <section id="footer" className="footer-section">
@@ -17,7 +15,7 @@ function Footer() {
             <ul>
               <li>
                 <a
-                  href="https://www.instagram.com/"
+                  href="https://www.instagram.com/trong_ong/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -40,7 +38,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.twitter.com/"
+                  href="https://x.com/TrongOng"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -61,7 +59,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/"
+                  href="https://www.linkedin.com/in/trong-ong/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -84,7 +82,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.github.com/"
+                  href="https://github.com/TrongOng"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -109,9 +107,7 @@ function Footer() {
           <div className="footer-nav">
             <ul>
               <li>
-                <a href="#home" onClick={() => handleMenuItemClick("home")}>
-                  Home
-                </a>
+                <a onClick={() => handleMenuItemClick("home")}>Home</a>
               </li>
               <li>
                 <a onClick={() => handleMenuItemClick("about")}>About</a>

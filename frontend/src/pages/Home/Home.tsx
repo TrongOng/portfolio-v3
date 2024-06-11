@@ -4,6 +4,7 @@ import GithubSvg from "../../images/github";
 import Profile from "../../images/trong-profile.png";
 
 import { useRef, useEffect, useState } from "react";
+import { useSectionNavigation } from "../../hooks/useSectionNavigation";
 
 function Home() {
   const myRef = useRef<HTMLHeadingElement>(null);
@@ -21,6 +22,8 @@ function Home() {
       observer.disconnect();
     };
   }, []);
+  const { useScrollBehavior } = useSectionNavigation();
+  const { handleMenuItemClick } = useScrollBehavior();
   return (
     <>
       <section id="home" className="homepage-section">
@@ -36,7 +39,9 @@ function Home() {
             <p className="home-text-p2"> Software Developer</p>
             <div className="home-btn-container">
               <button>Download CV</button>
-              <button>Contact Me</button>
+              <button>
+                <a onClick={() => handleMenuItemClick("contact")}>Contact Me</a>
+              </button>
             </div>
             <div className="home-socials-container">
               <LinkedinSvg className="home-icon" />
