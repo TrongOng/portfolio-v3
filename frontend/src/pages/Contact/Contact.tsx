@@ -15,11 +15,11 @@ interface FormFields {
 }
 
 function Contact() {
-  const [recaptchanState, recaptchaActions] = useAsync(verifyRecaptcha);
   const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [recaptchaState, recaptchaActions] = useAsync(verifyRecaptcha);
   const [messageState, messageActions] = useAsync(createMessage);
   const [status, setStatus] = useState<
-    "not-executed" | "loading" | "success" | "error"
+    "not-executed" | "loading" | "success" | "error" | "waitingForRecaptcha"
   >("not-executed");
   const [error, setError] = useState<string | null>(null);
   const {
@@ -27,17 +27,6 @@ function Contact() {
     register,
     formState: { errors },
   } = useForm<FormFields>();
-
-  const onChange = (recaptchaToken: string | null) => {
-    // Update the value of recaptchaToken when the reCAPTCHA challenge is completed
-    if (recaptchaToken) {
-      setRecaptchaToken(recaptchaToken);
-    } else {
-      setRecaptchaToken("");
-      setStatus("not-executed");
-      setError(null);
-    }
-  };
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     setError(null);
@@ -48,12 +37,12 @@ function Contact() {
       setStatus("error");
       return;
     }
-    if (!recaptchaToken) {
-      setError("Please complete the reCAPTCHA.");
-      setStatus("error");
-      return;
-    }
     try {
+      // If reCAPTCHA token is not present, change status to "waitingForRecaptcha"
+      if (!recaptchaToken) {
+        setStatus("waitingForRecaptcha");
+        return;
+      }
       // Verify the reCAPTCHA token
       await recaptchaActions.execute({ recaptchaToken });
       // If the verification is successful, proceed to submit the message
@@ -112,10 +101,13 @@ function Contact() {
               {...register("honeypot")}
               style={{ display: "none" }}
             />
-            <ReCAPTCHA
-              sitekey="6LeGv_UpAAAAAGDPGrfuJXOIcfXgOn3Mwp-TULi4"
-              onChange={onChange}
-            />
+            {/* Render reCAPTCHA only when waiting for reCAPTCHA */}
+            {status === "waitingForRecaptcha" && (
+              <ReCAPTCHA
+                sitekey="6LeGv_UpAAAAAGDPGrfuJXOIcfXgOn3Mwp-TULi4"
+                onChange={(token) => setRecaptchaToken(token || "")}
+              />
+            )}
             <button type="submit" disabled={status === "loading"}>
               SEND
             </button>
