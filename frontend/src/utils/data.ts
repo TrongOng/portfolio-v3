@@ -44,21 +44,24 @@ export const WORK_EXPERIENCE = [
 
 export const PROJECT_EXPERIENCE = [
   {
-    title: "Project Experience random text",
-    date: "5-20-2024",
+    title: "Personal Portfolio Website",
+    date: "April 30, 2024 - Current",
     description: [
-      "random project description",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, obcaecati.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, deserunt.",
+      "A full-stack website designed to showcase my skills, projects, and experience, including a portal for users to contact me.",
+      "Key features: Professional Profile, Contact System, Responsive Design, and Authentication.",
+      "Implemented a messaging system where users can contact me through a form. The messages are sent to my backend, allowing me to log into an Admin Portal to view them.",
+      "Technologies: Vite, ReactJS, TypeScript, FastAPI, PostgreSQL.",
     ],
+    link: "http://localhost:5173/",
   },
   {
-    title: "Lorem ipsum dolor sit amet.",
-    date: "Lorem ipsum dolor sit amet.",
+    title: "Galactic Defender",
+    date: "March 13, 2024 - Current",
     description: [
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, quibusdam!",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, obcaecati.",
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, deserunt.",
+      "A space shooter game designed to provide an entertaining experience where players aim to achieve high scores by destroying alien ships and avoiding being hit.",
+      "Key features: Spaceship Controls, Bullet Mechanics, Alien Waves, Score Tracking, Particles and Effects, Background and Sound Effects.",
+      "Technologies: Python (Pygame).",
     ],
+    link: "https://github.com/TrongOng/galactic-defender",
   },
 ];

@@ -5,6 +5,7 @@ interface ExperienceDetails {
   date: string;
   responsibilities?: string[];
   description?: string[];
+  link?: string;
 }
 
 function ExperienceCard({ details }: { details: ExperienceDetails }) {
@@ -21,6 +22,16 @@ function ExperienceCard({ details }: { details: ExperienceDetails }) {
             <li key={`description-${index}`}>{item}</li>
           ))}
         </ul>
+      )}
+      {details.link && (
+        <a
+          href={details.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="project-link"
+        >
+          (View Project)
+        </a>
       )}
     </section>
   );
