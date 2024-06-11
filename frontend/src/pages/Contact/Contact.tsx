@@ -1,4 +1,5 @@
 import "./Contact.css";
+import { SITEKEY } from "../../config/baseurl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createMessage } from "../../api/message";
 import { verifyRecaptcha } from "../../api/recaptcha";
@@ -13,7 +14,6 @@ interface FormFields {
   message: string;
   honeypot: string;
 }
-
 function Contact() {
   const [recaptchaToken, setRecaptchaToken] = useState("");
   const [recaptchaState, recaptchaActions] = useAsync(verifyRecaptcha);
@@ -104,7 +104,7 @@ function Contact() {
             {/* Render reCAPTCHA only when waiting for reCAPTCHA */}
             {status === "waitingForRecaptcha" && (
               <ReCAPTCHA
-                sitekey="6LeGv_UpAAAAAGDPGrfuJXOIcfXgOn3Mwp-TULi4"
+                sitekey={SITEKEY}
                 onChange={(token) => setRecaptchaToken(token || "")}
               />
             )}
