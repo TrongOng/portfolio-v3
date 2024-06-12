@@ -10,7 +10,7 @@
 
 ### Create Environment
 
-- python -m venv venv
+- python -m venv .venv
 
 ### Activate Environment
 

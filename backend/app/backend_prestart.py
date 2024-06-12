@@ -1,7 +1,8 @@
 import logging
 
 from tenacity import after_log, before_log, retry, stop_after_attempt, wait_fixed
-
+from apscheduler.schedulers.background import BackgroundScheduler
+from app.message_utils import delete_message_scheduler
 from app.db.session import SessionLocal
 
 logging.basicConfig(level=logging.INFO)
@@ -26,11 +27,20 @@ def init() -> None:
         logger.error(e)
         raise e
 
+def configure_scheduler():
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(delete_message_scheduler, trigger='interval', days=31)
+    scheduler.start()
+    return scheduler
+
+
 
 def main() -> None:
     logger.info("Initializing service")
     init()
     logger.info("Service finished initializing")
+    configure_scheduler()
+    logger.info("Scheduler started")
 
 
 if __name__ == "__main__":
