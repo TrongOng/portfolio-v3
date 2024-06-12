@@ -7,6 +7,8 @@ import { useRef, useEffect, useState } from "react";
 import { useSectionNavigation } from "../../hooks/useSectionNavigation";
 
 function Home() {
+  const { useScrollBehavior } = useSectionNavigation();
+  const { handleMenuItemClick } = useScrollBehavior();
   const myRef = useRef<HTMLHeadingElement>(null);
   const [myElementIsVisible, setMyElementIsVisible] = useState(false);
   console.log("myElementIsVisible", myElementIsVisible);
@@ -22,8 +24,6 @@ function Home() {
       observer.disconnect();
     };
   }, []);
-  const { useScrollBehavior } = useSectionNavigation();
-  const { handleMenuItemClick } = useScrollBehavior();
   return (
     <>
       <section id="home" className="homepage-section">

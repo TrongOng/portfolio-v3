@@ -16,8 +16,8 @@ import Email from "./pages/AdminPortal/Email/Email.tsx";
 import Message from "./pages/AdminPortal/Email/Message/Message.tsx";
 
 // Reset Password Pages
-import ForgotPassword from "./pages/AdminPortal/Reset/ForgotPassword/ForgotPassword.tsx";
-import ResetPassword from "./pages/AdminPortal/Reset/ResetPassword/ResetPassword.tsx";
+import ForgotPassword from "./pages/AdminPortal/Reset/ForgotPassword.tsx";
+import ResetPassword from "./pages/AdminPortal/Reset/ResetPassword.tsx";
 
 // Auth + Routers
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";

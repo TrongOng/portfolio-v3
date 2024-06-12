@@ -1,7 +1,6 @@
-import "./ForgotPassword.css";
+import "./Reset.css";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { forgotPassword } from "../../../../api/auth";
+import { forgotPassword } from "../../../api/auth";
 import { useAsync } from "@react-hookz/web";
 import { useEffect, useState } from "react";
 
@@ -36,13 +35,10 @@ function ForgotPassword() {
   }, [forgotPasswordState]);
 
   return (
-    <section id="forgot-password" className="forgot-password-section">
-      <div className="forgot-password-container">
-        <h1 className="forgot-password-title">Forgot Password</h1>
-        <form
-          className="forgot-password-form"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+    <section id="forgot-password" className="reset-section">
+      <div className="reset-container">
+        <h1 className="reset-title">Forgot Password</h1>
+        <form className="reset-form" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <input
               {...register("email", {

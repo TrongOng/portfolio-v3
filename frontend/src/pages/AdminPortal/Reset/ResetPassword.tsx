@@ -1,7 +1,7 @@
-import "./ResetPassword.css";
+import "./Reset.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { resetPassword } from "../../../../api/auth";
+import { resetPassword } from "../../../api/auth";
 import { useAsync } from "@react-hookz/web";
 import { useEffect, useState } from "react";
 
@@ -35,10 +35,10 @@ function ResetPassword() {
   }, [resetPasswordState, navigate]);
 
   return (
-    <section id="reset-password" className="reset-password-section">
-      <div className="reset-password-container">
-        <h1 className="reset-password-title">Reset Password</h1>
-        <form className="reset-password-form" onSubmit={handleSubmit(onSubmit)}>
+    <section id="reset-password" className="reset-section">
+      <div className="reset-container">
+        <h1 className="reset-title">Reset Password</h1>
+        <form className="reset-form" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <input
               {...register("new_password", {

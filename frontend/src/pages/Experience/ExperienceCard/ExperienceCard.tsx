@@ -10,29 +10,31 @@ interface ExperienceDetails {
 
 function ExperienceCard({ details }: { details: ExperienceDetails }) {
   return (
-    <section className="work-experience-card">
-      <h6>{details.title}</h6>
-      <time className="work-duration">{details.date}</time>
-      {(details.responsibilities || details.description) && (
-        <ul>
-          {details.responsibilities?.map((item, index) => (
-            <li key={`responsibility-${index}`}>{item}</li>
-          ))}
-          {details.description?.map((item, index) => (
-            <li key={`description-${index}`}>{item}</li>
-          ))}
-        </ul>
-      )}
-      {details.link && (
-        <a
-          href={details.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="project-link"
-        >
-          (View Project)
-        </a>
-      )}
+    <section className="experience-card">
+      <div className="experience-card-content">
+        <h1>{details.title}</h1>
+        <time className="experience-card-duration">{details.date}</time>
+        {(details.responsibilities || details.description) && (
+          <ul>
+            {details.responsibilities?.map((item, index) => (
+              <li key={`responsibility-${index}`}>{item}</li>
+            ))}
+            {details.description?.map((item, index) => (
+              <li key={`description-${index}`}>{item}</li>
+            ))}
+          </ul>
+        )}
+        {details.link && (
+          <a
+            href={details.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="experience-card-button"
+          >
+            View Project
+          </a>
+        )}
+      </div>
     </section>
   );
 }
