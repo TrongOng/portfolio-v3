@@ -11,7 +11,6 @@ export const WORK_EXPERIENCE = [
       "Worked remotely, demonstrating effective communication and collaboration within a distributed team.",
       "Application that utilizes React Native.js, FastAPI, and PostgreSQL for development.",
     ],
-    link: "https://github.com/TrongOng/galactic-defender",
   },
   {
     title: "Student Developer @ Dev Youngstown",
