@@ -35,6 +35,10 @@
   font-weight: 500;
   position: relative;
   cursor: pointer;
+  color: #d3d9d4;
+}
+.footer-nav li:nth-child(5) > a {
+  color: red;
 }
 
 .footer-nav a:before {
@@ -47,6 +51,7 @@
   opacity: 0;
   transform: translateX(-1.5rem);
   transition: all 0.3s ease;
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
 }
 
 .footer-nav a:hover::before {

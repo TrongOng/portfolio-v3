@@ -63,8 +63,8 @@ def delete_user(
 @router.get("/users/{id}", response_model=schemas.User)
 def read_user_by_id(
     id: int,
-    current_user: models.User = Depends(deps.get_current_active_superuser),
     db: Session = Depends(deps.get_db),
+    current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     user = crud.user.get(db, id=id)
     if user == current_user:

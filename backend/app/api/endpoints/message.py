@@ -102,6 +102,7 @@ def update_isOpen(
     *,
     db: Session = Depends(deps.get_db),
     message_id: int,
+    current_user: models.User = Depends(deps.get_current_user),
 ) -> models.Message:
     """
     Update is open.
@@ -121,6 +122,7 @@ def update_isFavorite(
     *,
     db: Session = Depends(deps.get_db),
     message_id: int,
+    current_user: models.User = Depends(deps.get_current_user),
 ) -> models.Message:
     """
     Update is open.
@@ -145,6 +147,7 @@ def delete_multi_messages(
     *,
     db: Session = Depends(deps.get_db),
     message_ids: schemas.DeleteMessagesRequest,
+    current_user: models.User = Depends(deps.get_current_user),
 ) -> List[models.Message]:
     deleted_messages = crud.message.delete_multi_messages(db=db, ids=message_ids.message_ids)
     if not deleted_messages:

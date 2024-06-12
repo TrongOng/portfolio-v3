@@ -13,6 +13,9 @@
   backdrop-filter: blue(20px);
   padding: 50px 40px;
   border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: #212a31;
 }
 
 .login-title {
@@ -31,6 +34,8 @@
   border-radius: 0.6rem;
   padding: 1rem;
   margin-bottom: 1rem;
+  background: #2e3944;
+  border: 1px solid #124e66;
 }
 .forgot-password {
   display: flex;
@@ -39,6 +44,7 @@
 }
 .forgot-password a {
   text-decoration: none;
+  color: #fff;
 }
 .forgot-password a:hover {
   text-decoration: underline;
@@ -50,4 +56,10 @@
   padding: 0.7rem;
   transition: all 0.3s ease;
   cursor: pointer;
+  color: #fff;
+  border: 1px solid #124e66;
+  background: linear-gradient(90deg, #748d92 0%, #124e66 100%);
+}
+.login-form button:hover {
+  color: #124e66;
 }

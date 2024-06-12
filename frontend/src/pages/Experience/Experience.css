@@ -2,6 +2,7 @@
   font-size: 3rem;
   text-align: center;
   margin-bottom: 2rem;
+  color: #124e66;
 }
 .experience-content {
   margin-bottom: 2rem;
@@ -21,10 +22,15 @@
   border-radius: 0.65rem;
   z-index: 3;
   cursor: pointer;
+  color: #124e66;
+  border: 1px solid #124e66;
+  background: #748d92;
 }
 .slick-arrow.slick-next:before,
 .slick-arrow.slick-prev:before {
   content: "";
+  background: #212a31;
+  color: #124e66;
 }
 
 @media (max-width: 1025px) {

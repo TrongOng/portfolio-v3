@@ -12,6 +12,8 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  background: #2e3944;
+  border: 1px solid #124e66;
 }
 
 .message-body {
@@ -34,6 +36,12 @@
   cursor: pointer;
   margin: 1rem;
   flex: 1;
+  color: #fff;
+  border: 1px solid #124e66;
+  background: linear-gradient(90deg, #748d92 0%, #124e66 100%);
+}
+.message-container button:hover {
+  background: transparent;
 }
 
 .message-container a {

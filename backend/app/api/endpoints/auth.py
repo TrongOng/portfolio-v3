@@ -23,10 +23,13 @@ router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
 
 
-# register
+# register (as of now, only superadmin can create user)
 @router.post("/user/register", response_model=schemas.User)
 def create_user(
-    *, db: Session = Depends(deps.get_db), user_in: schemas.UserCreate
+    *, 
+    db: Session = Depends(deps.get_db), 
+    user_in: schemas.UserCreate,
+    current_user: models.User = Depends(deps.get_current_active_superuser),
 ) -> Any:
     user_in.email = user_in.email.lower()
     user = crud.user.get_by_email(db, email=user_in.email)
@@ -188,42 +191,42 @@ def reset_password(
 
 
 # change password
-@router.put("/user/password/change", response_model=schemas.Msg)
-def change_password(
-    *,
-    db: Session = Depends(deps.get_db),
-    current_password: str = Body(...),
-    new_password: str = Body(...),
-    current_user: models.User = Depends(deps.get_current_active_user),
-    request: Request,
-) -> Any:
-    if not crud.user.authenticate(
-        db, email=current_user.email, password=current_password
-    ):
-        raise HTTPException(status_code=400, detail="Incorrect current password")
-    elif crud.user.is_disabled(current_user):
-        raise HTTPException(status_code=400, detail="Disabled user")
-    hashed_password = get_password_hash(new_password)
-    current_user.hashed_password = hashed_password
-    db.add(current_user)
-    db.commit()
-    template = templates.TemplateResponse(
-        "password_change_email.html",
-        {
-            "request": request,
-            "name": current_user.first_name,
-            "PROJECT_NAME": settings.PROJECT_NAME,
-            "COMPANY_ADDRESS": settings.COMPANY_ADDRESS,
-            "SUPPORT_EMAIL": settings.SUPPORT_EMAIL,
-        },
-    )
-    html_body = template.body.decode("utf-8")
-    postmark = PostmarkClient(server_token=settings.POSTMARK_TOKEN)
-    postmark.emails.send(
-        From="noreply@COMPANY.com",
-        To=current_user.email,
-        Subject="Password Change Confirmation",
-        HtmlBody=html_body,
-    )
+# @router.put("/user/password/change", response_model=schemas.Msg)
+# def change_password(
+#     *,
+#     db: Session = Depends(deps.get_db),
+#     current_password: str = Body(...),
+#     new_password: str = Body(...),
+#     current_user: models.User = Depends(deps.get_current_active_user),
+#     request: Request,
+# ) -> Any:
+#     if not crud.user.authenticate(
+#         db, email=current_user.email, password=current_password
+#     ):
+#         raise HTTPException(status_code=400, detail="Incorrect current password")
+#     elif crud.user.is_disabled(current_user):
+#         raise HTTPException(status_code=400, detail="Disabled user")
+#     hashed_password = get_password_hash(new_password)
+#     current_user.hashed_password = hashed_password
+#     db.add(current_user)
+#     db.commit()
+#     template = templates.TemplateResponse(
+#         "password_change_email.html",
+#         {
+#             "request": request,
+#             "name": current_user.first_name,
+#             "PROJECT_NAME": settings.PROJECT_NAME,
+#             "COMPANY_ADDRESS": settings.COMPANY_ADDRESS,
+#             "SUPPORT_EMAIL": settings.SUPPORT_EMAIL,
+#         },
+#     )
+#     html_body = template.body.decode("utf-8")
+#     postmark = PostmarkClient(server_token=settings.POSTMARK_TOKEN)
+#     postmark.emails.send(
+#         From="trong@trongong.com",
+#         To=current_user.email,
+#         Subject="Password Change Confirmation",
+#         HtmlBody=html_body,
+#     )
 
-    return {"msg": "Password updated successfully"}
+#     return {"msg": "Password updated successfully"}

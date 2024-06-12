@@ -2,6 +2,7 @@
   font-size: 3rem;
   text-align: center;
   margin-bottom: 2rem;
+  color: #124e66;
 }
 .contact-container {
   width: 60%;
@@ -29,6 +30,8 @@
   padding: 1rem;
   resize: none;
   color: #fff;
+  background: #2e3944;
+  border: 1px solid #124e66;
 }
 .contact-form button {
   font-size: 1rem;
@@ -37,6 +40,12 @@
   padding: 0.7rem;
   transition: all 0.3s ease;
   cursor: pointer;
+  color: #fff;
+  border: 1px solid #124e66;
+  background: linear-gradient(90deg, #748d92 0%, #124e66 100%);
+}
+.contact-form button:hover {
+  background: transparent;
 }
 
 @media screen and (max-width: 1025px) {
