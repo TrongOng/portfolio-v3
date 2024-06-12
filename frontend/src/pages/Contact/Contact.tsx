@@ -48,7 +48,7 @@ function Contact() {
       // If the verification is successful, proceed to submit the message
       await messageActions.execute(data);
       setStatus("success");
-    } catch (err) {
+    } catch (error) {
       setError("Failed to send message. Please try again.");
       setStatus("error");
     }
