@@ -26,7 +26,7 @@ app.add_middleware(
 
 app.include_router(api_router, prefix=settings.API_STR)
 
-# Start the scheduler
+# Start the scheduler (Hopefully it works lol)
 if __name__ == "__main__":
     scheduler = configure_scheduler()
     scheduler.start()
