@@ -2,6 +2,7 @@ import "./Home.css";
 import LinkedinSvg from "../../images/linkedin";
 import GithubSvg from "../../images/github";
 import Profile from "../../images/trong-profile.png";
+import Resume from "../../images/Ong_Trong_Resume.pdf";
 
 import { useRef, useEffect, useState } from "react";
 import { useSectionNavigation } from "../../hooks/useSectionNavigation";
@@ -38,7 +39,11 @@ function Home() {
             </h1>
             <p className="home-text-p2"> Software Developer</p>
             <div className="home-btn-container">
-              <button>Download CV</button>
+              <button>
+                <a href={Resume} target="_blank">
+                  View Resume
+                </a>
+              </button>
               <button>
                 <a onClick={() => handleMenuItemClick("contact")}>Contact Me</a>
               </button>

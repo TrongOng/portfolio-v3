@@ -79,10 +79,14 @@
   width: 8rem;
   border-radius: 2rem;
   cursor: pointer;
+  background-color: #d3d9d4;
 }
-.home-btn-container button:hover,
 .home-btn-container button:hover {
   background: #748d92;
+}
+.home-btn-container button a {
+  text-decoration: none;
+  color: black;
 }
 
 .home-icon {
