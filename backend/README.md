@@ -1,16 +1,16 @@
 # Install Dependency
 
-- pip install -r requirements.txt
+- pip3 install -r requirements.txt
 
 ### Update Requirement File
 
-- pip freeze > requirements.txt
+- pip3 freeze > requirements.txt
 
 # Virtual Environment
 
 ### Create Environment
 
-- python -m venv .venv
+- python3 -m venv .venv
 
 ### Activate Environment
 

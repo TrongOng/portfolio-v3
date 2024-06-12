@@ -4,6 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from app.api.api import api_router
 from app.core.config import settings
+from app.message_utils import configure_scheduler
 
 if settings.SECRET_KEY == "":
     raise HTTPException(
@@ -24,3 +25,8 @@ app.add_middleware(
 )
 
 app.include_router(api_router, prefix=settings.API_STR)
+
+# Start the scheduler
+if __name__ == "__main__":
+    scheduler = configure_scheduler()
+    scheduler.start()

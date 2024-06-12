@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from app.db.session import SessionLocal
 from app import models, crud
 import logging
+from apscheduler.schedulers.background import BackgroundScheduler
 
 logger = logging.getLogger(__name__)
 
@@ -26,3 +27,10 @@ def delete_message_scheduler() -> None:
         logger.error(f"Error deleting messages: {e}")
     finally:
         db.close()
+
+def configure_scheduler():
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(delete_message_scheduler, trigger='interval', days=31)
+    scheduler.start()
+    return scheduler
+
