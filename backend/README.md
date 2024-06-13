@@ -34,7 +34,7 @@
 
 ### Create a new migration
 
-- alembic revision --autogenerate -m "description of changes"
+- alembic revision --autogenerate -m "init db"
 
 ### Apply Pending Migrations
 
@@ -50,4 +50,4 @@
 
 ### List All Revisions
 
-alembic history
+- alembic history
