@@ -52,7 +52,7 @@ export const PROJECT_EXPERIENCE = [
       "Implemented a messaging system where users can contact me through a form. The messages are sent to my backend, allowing me to log into an Admin Portal to view them.",
       "Technologies: Vite, ReactJS, TypeScript, FastAPI, PostgreSQL.",
     ],
-    link: "http://localhost:5173/",
+    link: "https://trongong.com/",
   },
   {
     title: "Galactic Defender",
