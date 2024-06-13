@@ -3,7 +3,6 @@ import { SITEKEY } from "../../config/baseurl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { createMessage } from "../../api/message";
 import { verifyRecaptcha } from "../../api/recaptcha";
-import { useAsync } from "@react-hookz/web";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -16,8 +15,6 @@ interface FormFields {
 }
 function Contact() {
   const [recaptchaToken, setRecaptchaToken] = useState("");
-  const [recaptchaState, recaptchaActions] = useAsync(verifyRecaptcha);
-  const [messageState, messageActions] = useAsync(createMessage);
   const [status, setStatus] = useState<
     "not-executed" | "loading" | "success" | "error" | "waitingForRecaptcha"
   >("not-executed");
@@ -44,9 +41,9 @@ function Contact() {
         return;
       }
       // Verify the reCAPTCHA token
-      await recaptchaActions.execute({ recaptchaToken });
+      await verifyRecaptcha({ recaptchaToken });
       // If the verification is successful, proceed to submit the message
-      await messageActions.execute(data);
+      await createMessage(data);
       setStatus("success");
     } catch (error) {
       setError("Failed to send message. Please try again.");

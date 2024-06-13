@@ -108,7 +108,7 @@ export const useEmailMessages = () => {
   const toggleDeleteMessages = async () => {
     // Retrieve selected message IDs
     const selectedIds = Object.entries(individualCheckedState)
-      .filter(([id, isChecked]) => isChecked)
+      .filter(([isChecked]) => isChecked)
       .map(([id]) => parseInt(id));
 
     // If no messages are selected, return

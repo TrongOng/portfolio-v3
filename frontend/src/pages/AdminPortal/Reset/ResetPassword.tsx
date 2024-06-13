@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { resetPassword } from "../../../api/auth";
 import { useAsync } from "@react-hookz/web";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 type FormFields = {
   new_password: string;

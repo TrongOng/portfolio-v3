@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "./AuthProvider";
 
-const ProtectedRoute: React.FC<any> = (props) => {
+const ProtectedRoute: React.FC<any> = () => {
   const { authenticated } = useAuth();
 
   if (!authenticated) {
