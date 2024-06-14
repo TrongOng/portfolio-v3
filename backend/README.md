@@ -97,6 +97,8 @@ alembic history
 
 # Start API Server
 
-- uvicorn app.main:app --reload
+```bash
+uvicorn app.main:app --reload
+```
 
 View the FastAPI Swagger UI via URL link with your browser
