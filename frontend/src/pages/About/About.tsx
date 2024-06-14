@@ -14,28 +14,19 @@ function About() {
                 in Application Development.
               </p>
               <p>
-                A bit about my background: during the early years of my college
-                education, I was drawn to the medical profession due to my
-                interest in promoting human health and longevity. However, as I
-                gained knowledge, I came to the realization that my passion for
-                health fell short. Throughout those four years, I felt something
-                was missing—a path that truly resonated with who I wanted to
-                become.
-              </p>
-              <p>
-                After much contemplation, I decided to pursue involvement in
-                humanity's technological advancement—a realm of creativity,
-                problem-solving, and exploration. This change of heart aligned
-                with my daily activities and sparked my interest. My goal in
-                this field is to seek opportunities to expand my knowledge and
-                contribute meaningfully to its development. I am a firm believer
-                in the value of continuous learning.
+                During my college education, I explored various interests,
+                including the medical profession due to my initial curiosity
+                about human health and longevity. However, as I gained
+                knowledge, I discovered a passion for technology and its
+                potential to drive innovation and problem-solving. My goal now
+                is to contribute meaningfully to the tech industry, leveraging
+                my skills in programming, frameworks, and methodologies.
               </p>
               <p>
                 Drawing from my academic background and professional experience,
                 I am proficient in a wide range of programming languages,
                 frameworks, and methodologies. This specific information can be
-                found under the “Download CV” or “Experience” section. Committed
+                found under the “View Resume” or “Experience” section. Committed
                 to staying at the forefront of technological advancements, I
                 actively pursue continuous knowledge to expand my horizon.
               </p>
